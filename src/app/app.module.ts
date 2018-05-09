@@ -9,6 +9,7 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {LoginPage} from "../pages/login/login";
 
+import { RestProvider } from '../providers/rest/rest';
 import { HTTP } from '@ionic-native/http';
 
 @NgModule({
@@ -31,7 +32,8 @@ import { HTTP } from '@ionic-native/http';
 		StatusBar,
 		SplashScreen,
 		{provide: ErrorHandler, useClass: IonicErrorHandler},
-		HTTP
+		HTTP,
+    RestProvider
 	]
 })
 export class AppModule {

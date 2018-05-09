@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {HTTP} from "@ionic-native/http";
+import {RestProvider} from "../../providers/rest/rest";
 
 @IonicPage()
 @Component({
@@ -12,7 +13,7 @@ export class LoginPage {
 	username: string;
 	password: string;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, public http: HTTP) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, public http: HTTP, public restProvider: RestProvider) {
 	}
 
 	ionViewDidLoad() {
@@ -26,7 +27,7 @@ export class LoginPage {
 			password: this.password
 		};
 
-		this.http.post('http://localhost:8888/barkley/barkley_backend/index.php/site/login', body, {})
+		this.http.post(this.restProvider.getUrl() + 'login/', body, {})
 			.then((data) => { // First arrow function to success; Second to fail
 				console.log(data);
 			})
