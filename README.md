@@ -1,5 +1,5 @@
 
-# SaveBarkley Ionic App
+# SaveBarkley Hero App
 
 ### Version 1.0
 
