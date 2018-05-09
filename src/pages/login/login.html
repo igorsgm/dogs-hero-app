@@ -1,45 +1,45 @@
 <ion-content padding class="animated fadeIn login auth-page">
-	
-	<!-- Logo -->
-	<div padding-horizontal text-center class="animated fadeInDown">
-		<div class="logo"></div>
-		<h2 ion-text class="text-primary">
-			<strong>Save</strong>Barkley
-		</h2>
-	</div>
-	
-	<!-- Login form -->
-	<form>
-		<ion-item>
-			<ion-label floating>
-				<ion-icon name="email" item-start class="text-primary"></ion-icon>
-				Email
-			</ion-label>
-			<ion-input type="email" [(ngModel)]="email" name="email"></ion-input>
-		</ion-item>
-		
-		<ion-item>
-			<ion-label floating>
-				<ion-icon name="lock" item-start class="text-primary"></ion-icon>
-				Password
-			</ion-label>
-			<ion-input type="password" [value]="password" name="password"></ion-input>
-		</ion-item>
-	</form>
-	
-	<p text-right ion-text color="secondary"><strong>Forgot Password?</strong></p>
-	
-	<div>
-		<button ion-button icon-start block color="dark">
-			<ion-icon name="log-in"></ion-icon>
-			SIGN IN
-		</button>
-	
-	</div>
-	
-	<!-- Other links -->
-	<div text-center margin-top>
-		<span ion-text color="secondary" tappable (click)="register()">New here? <strong>Sign up</strong></span>
-	</div>
+	<ion-grid>
+		<ion-row justify-content-center>
+			<ion-col col-sm-auto col-md-5>
+				<!-- Logo -->
+				<div padding-horizontal text-center class="animated fadeInDown">
+					<div class="logo"></div>
+					<h2 ion-text class="text-primary" color="primary">
+						<strong>Save</strong>Barkley
+					</h2>
+				</div>
+				
+				<!-- Login form -->
+				<form (submit)="login()">
+					<ion-list inset>
+						<ion-item>
+							<ion-label floating>
+								<ion-icon name="person" item-start class="text-primary"></ion-icon>
+								Username
+							</ion-label>
+							<ion-input type="text" [(ngModel)]="username" name="username"></ion-input>
+						</ion-item>
+						
+						<ion-item>
+							<ion-label floating>`
+								<ion-icon name="lock" item-start class="text-primary"></ion-icon>
+								Password
+							</ion-label>
+							<ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
+						</ion-item>
+						
+						<!--<p text-right ion-text color="secondary"><strong>Forgot Password?</strong></p>-->
+						
+						<button type="submit" ion-button icon-start block color="secondary">
+							<ion-icon name="log-in"></ion-icon>
+							Sign In
+						</button>
+					
+					</ion-list>
+				</form>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 
 </ion-content>
