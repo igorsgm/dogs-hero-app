@@ -39,9 +39,9 @@ npm install
 ```
 
 
-Much of SaveBarkley's app can be built right in the browser with **ionic serve**. We recommend starting with this workflow.
+Much of SaveBarkley's app can be built right in the browser with **ionic cordova run browser**. We recommend starting with this workflow.
 ```
-ionic serve
+ionic cordova run browser
 ```
 
 When you're ready to deploy SaveBarkley App to a real device, check out Ionic's [Deploying guide](https://ionicframework.com/docs/intro/deploying/) 
