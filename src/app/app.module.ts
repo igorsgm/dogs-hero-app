@@ -9,8 +9,9 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {LoginPage} from "../pages/login/login";
 
-import { RestProvider } from '../providers/rest/rest';
-import { HTTP } from '@ionic-native/http';
+import {RestProvider} from '../providers/rest/rest';
+import {HTTP} from '@ionic-native/http';
+import {IonicStorageModule} from "@ionic/storage";
 
 @NgModule({
 	declarations: [
@@ -21,6 +22,9 @@ import { HTTP } from '@ionic-native/http';
 	imports: [
 		BrowserModule,
 		IonicModule.forRoot(MyApp),
+		IonicStorageModule.forRoot({
+			driverOrder: ['localstorage']
+		}),
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [
@@ -33,7 +37,7 @@ import { HTTP } from '@ionic-native/http';
 		SplashScreen,
 		{provide: ErrorHandler, useClass: IonicErrorHandler},
 		HTTP,
-    RestProvider
+		RestProvider,
 	]
 })
 export class AppModule {
