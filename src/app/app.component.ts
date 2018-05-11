@@ -5,6 +5,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 
 import {HomePage} from '../pages/home/home';
 import {LoginPage} from "../pages/login/login";
+import {Storage} from "@ionic/storage";
 
 @Component({
 	templateUrl: 'app.html'
@@ -12,11 +13,11 @@ import {LoginPage} from "../pages/login/login";
 export class MyApp {
 	@ViewChild(Nav) nav: Nav;
 
-	rootPage: any = LoginPage;
+	rootPage: any = '';
 
 	pages: Array<{ title: string, component: any }>;
 
-	constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+	constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public localStorage: Storage) {
 		this.initializeApp();
 
 		// used for an example of ngFor and navigation
@@ -27,6 +28,8 @@ export class MyApp {
 	}
 
 	initializeApp() {
+		this.treatRootPage();
+
 		this.platform.ready().then(() => {
 			// Okay, so the platform is ready and our plugins are available.
 			// Here you can do any higher level native things you might need.
@@ -39,5 +42,21 @@ export class MyApp {
 		// Reset the content nav to have just this page
 		// we wouldn't want the back button to show in this scenario
 		this.nav.setRoot(page.component);
+	}
+
+	/**
+	 * Determines which is the application's rootPage
+	 * If the user is already logged in, RootPage will be HomePage, if not LoginPage.
+	 */
+	treatRootPage() {
+		this.localStorage.get('user').then(user => {
+			if (!user) {
+				this.rootPage = LoginPage;
+				return false;
+			}
+			console.info(user);
+
+			this.rootPage = HomePage;
+		});
 	}
 }

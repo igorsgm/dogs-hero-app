@@ -2,16 +2,21 @@ import {BrowserModule} from '@angular/platform-browser';
 import {ErrorHandler, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 
-import {MyApp} from './app.component';
-import {HomePage} from '../pages/home/home';
-
+// Plugins added
+import {InAppBrowser} from '@ionic-native/in-app-browser';
+import {IonicStorageModule} from "@ionic/storage";
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
+
+// Pages
+import {MyApp} from './app.component';
+import {HomePage} from '../pages/home/home';
 import {LoginPage} from "../pages/login/login";
 
+// Providers
 import {RestProvider} from '../providers/rest/rest';
-import {HTTP} from '@ionic-native/http';
-import {IonicStorageModule} from "@ionic/storage";
+import {HttpClientModule} from '@angular/common/http';
+import {AuthProvider} from '../providers/auth/auth';
 
 @NgModule({
 	declarations: [
@@ -21,6 +26,7 @@ import {IonicStorageModule} from "@ionic/storage";
 	],
 	imports: [
 		BrowserModule,
+		HttpClientModule,
 		IonicModule.forRoot(MyApp),
 		IonicStorageModule.forRoot({
 			driverOrder: ['localstorage']
@@ -35,9 +41,10 @@ import {IonicStorageModule} from "@ionic/storage";
 	providers: [
 		StatusBar,
 		SplashScreen,
+		InAppBrowser,
 		{provide: ErrorHandler, useClass: IonicErrorHandler},
-		HTTP,
 		RestProvider,
+		AuthProvider,
 	]
 })
 export class AppModule {

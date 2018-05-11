@@ -1,9 +1,8 @@
 import {Component} from '@angular/core';
 import {IonicPage, MenuController, NavController, NavParams} from 'ionic-angular';
-import {HTTP} from "@ionic-native/http";
-import {RestProvider} from "../../providers/rest/rest";
-import {Storage} from "@ionic/storage";
+import {AuthProvider} from "../../providers/auth/auth";
 import {HomePage} from "../home/home";
+import {Storage} from "@ionic/storage";
 
 @IonicPage()
 @Component({
@@ -15,10 +14,10 @@ export class LoginPage {
 	username: string;
 	password: string;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController,
-				public http: HTTP, public restProvider: RestProvider,
-				public storage: Storage) {
+	constructor(public navParams: NavParams, public auth: AuthProvider, public navCtrl: NavController,
+				public menuCtrl: MenuController, public localStorage: Storage) {
 
+		// Disable the menu in the Login view
 		this.menuCtrl.enable(false);
 	}
 
@@ -26,36 +25,35 @@ export class LoginPage {
 		console.log('ionViewDidLoad LoginPage');
 	}
 
-	login() {
+	/**
+	 * Submit of login's form
+	 */
+	public login() {
+		let listener = this.auth.authenticate(this.username, this.password);
 
-		let body = {
-			username: this.username,
-			password: this.password
-		};
+		listener.subscribe(response => {
+			if (response.success === true) {
+				return this.afterLogin(response.data);
+			}
 
-		this.http.post(this.restProvider.getUrl() + 'login/', body, {})
-			.then((payload) => { // First arrow function to success; Second to fail
+            this.auth.authFailed(response);
 
-				if (payload.data == null || payload.data == 'null') {
-					this.authFailed();
-					return false;
-				}
-
-				let user = JSON.parse(payload.data);
-				this.authSuccess(user);
-			})
-			.catch((error) => { // Error 500, 400
-				this.authFailed();
-			});
+		}, err => {
+			this.auth.authFailed(err);
+		});
 	}
 
-	authFailed() {
-		console.warn('Login failed, display modal');
-	}
+	/**
+	 * After logging in successfully, it will store the user data in the localStorage
+	 * and then change the root page to HomePage and enable the Menu.
+	 *
+	 * @param data  Login function response
+	 */
+	public afterLogin(data) {
+		this.localStorage.set('user', data.user);
 
-	authSuccess(user) {
-		this.storage.set('user', user);
-		this.navCtrl.push(HomePage);
+		this.menuCtrl.enable(true);
+		this.navCtrl.setRoot(HomePage);
 	}
 
 }
