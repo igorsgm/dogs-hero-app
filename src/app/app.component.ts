@@ -6,6 +6,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {HomePage} from '../pages/home/home';
 import {LoginPage} from "../pages/login/login";
 import {Storage} from "@ionic/storage";
+import {AuthProvider} from "../providers/auth/auth";
 
 @Component({
 	templateUrl: 'app.html'
@@ -17,7 +18,7 @@ export class MyApp {
 
 	pages: Array<{ title: string, component: any }>;
 
-	constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public localStorage: Storage) {
+	constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public localStorage: Storage, private authProvider: AuthProvider) {
 		this.initializeApp();
 
 		// used for an example of ngFor and navigation
@@ -57,6 +58,19 @@ export class MyApp {
 			console.info(user);
 
 			this.rootPage = HomePage;
+		});
+	}
+
+	/**
+	 * Method to logout of the application. Mainly called in the Menu
+	 * If logout successfully, it will clear the user from localStorage and rootPage will become LoginPage
+	 */
+	logout() {
+		this.localStorage.get('user').then(user => {
+			this.localStorage.remove('user');
+			this.localStorage.remove('associado');
+
+			this.nav.setRoot(LoginPage);
 		});
 	}
 }

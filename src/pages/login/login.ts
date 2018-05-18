@@ -14,7 +14,7 @@ export class LoginPage {
 	username: string;
 	password: string;
 
-	constructor(public navParams: NavParams, public auth: AuthProvider, public navCtrl: NavController,
+	constructor(public navParams: NavParams, public authProvider: AuthProvider, public navCtrl: NavController,
 				public menuCtrl: MenuController, public localStorage: Storage) {
 
 		// Disable the menu in the Login view
@@ -29,19 +29,17 @@ export class LoginPage {
 	 * Submit of login's form
 	 */
 	public login() {
-		let listener = this.auth.authenticate(this.username, this.password);
 
-		listener.subscribe(response => {
+		this.authProvider.authenticate(this.username, this.password).then((response) => {
 			if (response.success === true) {
 				return this.afterLogin(response.data);
 			}
-
-            this.auth.authFailed(response);
-
-		}, err => {
-			this.auth.authFailed(err);
+			this.authProvider.authFailed(response);
+		}).catch((error) => {
+			this.authProvider.authFailed(error);
 		});
 	}
+
 
 	/**
 	 * After logging in successfully, it will store the user data in the localStorage

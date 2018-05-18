@@ -1,13 +1,13 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs/Observable";
 import {RestProvider} from "../rest/rest";
 import {AlertController} from "ionic-angular";
+import {Storage} from "@ionic/storage";
 
 @Injectable()
 export class AuthProvider {
 
-	constructor(public http: HttpClient, public restProvider: RestProvider, public alertCtrl: AlertController) {
+	constructor(public http: HttpClient, public restProvider: RestProvider, public alertCtrl: AlertController, public localStorage: Storage) {
 		console.log('Hello AuthProvider Provider');
 	}
 
@@ -16,16 +16,17 @@ export class AuthProvider {
 	 *
 	 * @param {string} username
 	 * @param {string} password
-	 * @returns {Observable<any>}
+	 * @returns {Promise<any>}
 	 */
-	public authenticate(username, password): Observable<any> {
+	public authenticate(username, password): Promise<any> {
 		let body = {
 			username: username,
 			password: password
 		};
 
-		return this.http.post(this.restProvider.getUrl() + 'login', body, this.restProvider.getHeaders());
+		return this.http.post(this.restProvider.getUrlApi() + 'login', body, this.restProvider.getHeaders()).toPromise();
 	}
+
 
 	/**
 	 * Method for displaying an alert of failure when authentication fails.
@@ -33,7 +34,7 @@ export class AuthProvider {
 	 * @param err
 	 */
 	public authFailed(err) {
-		console.warn('Login failed, display modal');
+		console.warn('Login failed, displaying modal');
 		console.log(err);
 
 		let alert = this.alertCtrl.create({
@@ -44,5 +45,4 @@ export class AuthProvider {
 
 		alert.present();
 	}
-
 }
