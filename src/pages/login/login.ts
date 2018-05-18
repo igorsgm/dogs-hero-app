@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {IonicPage, MenuController, NavController, NavParams} from 'ionic-angular';
 import {AuthProvider} from "../../providers/auth/auth";
-import {HomePage} from "../home/home";
 import {Storage} from "@ionic/storage";
+import {MapPage} from "../map/map";
 
 @IonicPage()
 @Component({
@@ -43,7 +43,7 @@ export class LoginPage {
 
 	/**
 	 * After logging in successfully, it will store the user data in the localStorage
-	 * and then change the root page to HomePage and enable the Menu.
+	 * and then change the root page to MapPage and enable the Menu.
 	 *
 	 * @param data  Login function response
 	 */
@@ -51,7 +51,7 @@ export class LoginPage {
 		this.localStorage.set('user', data.user);
 
 		this.menuCtrl.enable(true);
-		this.navCtrl.setRoot(HomePage);
+		this.navCtrl.setRoot(MapPage);
 	}
 
 }

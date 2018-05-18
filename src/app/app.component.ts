@@ -3,10 +3,9 @@ import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
-import {HomePage} from '../pages/home/home';
 import {LoginPage} from "../pages/login/login";
 import {Storage} from "@ionic/storage";
-import {AuthProvider} from "../providers/auth/auth";
+import {MapPage} from "../pages/map/map";
 
 @Component({
 	templateUrl: 'app.html'
@@ -18,12 +17,12 @@ export class MyApp {
 
 	pages: Array<{ title: string, component: any }>;
 
-	constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public localStorage: Storage, private authProvider: AuthProvider) {
+	constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public localStorage: Storage) {
 		this.initializeApp();
 
 		// used for an example of ngFor and navigation
 		this.pages = [
-			{title: 'Home', component: HomePage},
+			{title: 'Map', component: MapPage},
 		];
 
 	}
@@ -47,7 +46,7 @@ export class MyApp {
 
 	/**
 	 * Determines which is the application's rootPage
-	 * If the user is already logged in, RootPage will be HomePage, if not LoginPage.
+	 * If the user is already logged in, RootPage will be MapPage, if not LoginPage.
 	 */
 	treatRootPage() {
 		this.localStorage.get('user').then(user => {
@@ -57,7 +56,7 @@ export class MyApp {
 			}
 			console.info(user);
 
-			this.rootPage = HomePage;
+			this.rootPage = MapPage;
 		});
 	}
 

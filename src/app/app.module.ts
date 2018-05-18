@@ -10,19 +10,19 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 
 // Pages
 import {MyApp} from './app.component';
-import {HomePage} from '../pages/home/home';
 import {LoginPage} from "../pages/login/login";
 
 // Providers
 import {RestProvider} from '../providers/rest/rest';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthProvider} from '../providers/auth/auth';
+import {MapPage} from "../pages/map/map";
 
 @NgModule({
 	declarations: [
 		MyApp,
-		HomePage,
 		LoginPage,
+		MapPage,
 	],
 	imports: [
 		BrowserModule,
@@ -35,8 +35,8 @@ import {AuthProvider} from '../providers/auth/auth';
 	bootstrap: [IonicApp],
 	entryComponents: [
 		MyApp,
-		HomePage,
 		LoginPage,
+		MapPage,
 	],
 	providers: [
 		StatusBar,
