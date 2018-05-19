@@ -34,13 +34,22 @@ export class MapPage {
 				center: currentLatLng
 			});
 
-			new google.maps.Marker({
-				position: currentLatLng,
-				map: map,
-				title: 'Hello World!',
-				mapTypeId: google.maps.MapTypeId.ROADMAP
-			});
+			let icon = {
+				url: "../../assets/imgs/map/pin_sb.png",
+				scaledSize: new google.maps.Size(55, 65),
+				origin: new google.maps.Point(0, 0),
+				anchor: new google.maps.Point(0, 0)
+			};
 
+			this.localStorage.get('user').then(user => {
+				new google.maps.Marker({
+					position: currentLatLng,
+					map: map,
+					title: user.first_name,
+					icon: icon,
+					user: user
+				});
+			});
 
 		}, (err) => {
 			console.log(err);

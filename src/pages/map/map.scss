@@ -3,4 +3,12 @@ page-map {
 		height: 100%;
 		width: 100%;
 	}
+
+	ion-header {
+		ion-navbar {
+			img {
+				max-width: 60%;
+			}
+		}
+	}
 }
