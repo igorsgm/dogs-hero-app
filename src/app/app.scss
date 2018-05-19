@@ -14,7 +14,19 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-// Animate CSS
+ion-menu {
+	ion-content, button {
+		background-color: map_get($colors, primary) !important;
+	}
+
+	button {
+		color: map_get($colors, white) !important;
+	}
+}
+
+/**
+ * CSS ANIMATION
+ */
 .animated {
 	animation-duration: 1s;
 	animation-fill-mode: both;
