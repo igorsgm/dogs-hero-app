@@ -14,6 +14,7 @@ import {RestProvider} from '../providers/rest/rest';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthProvider} from '../providers/auth/auth';
 import {MapPage} from "../pages/map/map";
+import {Geolocation} from "@ionic-native/geolocation";
 
 @NgModule({
 	declarations: [
@@ -42,6 +43,7 @@ import {MapPage} from "../pages/map/map";
 		{provide: ErrorHandler, useClass: IonicErrorHandler},
 		RestProvider,
 		AuthProvider,
+		Geolocation,
 	]
 })
 export class AppModule {
