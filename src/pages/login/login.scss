@@ -1,12 +1,24 @@
 page-login {
 	//background-color: map_get($colors, light);
 
+	.auth-page {
+		background: url("../../assets/imgs/login/login_bg.png") no-repeat center center fixed;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
+
 	.logo {
-		width: 60px;
-		height: 60px;
-		margin: 20px auto 0;
-		border-radius: 10%;
-		background: url("../../assets/imgs/logo.png") no-repeat;
+		width: 50%;
+		height: 130px;
+		margin: 7em auto 0;
+		background: url("../../assets/imgs/login/logo_login.png") no-repeat;
 		background-size: 100%;
+	}
+
+	ion-item {
+		background: none !important;
+		border-bottom-color: map_get($colors, primary) !important;
 	}
 }
