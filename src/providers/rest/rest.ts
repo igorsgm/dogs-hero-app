@@ -4,11 +4,17 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 @Injectable()
 export class RestProvider {
 
-	private apiUrl: string = 'http://localhost:8888/savebarkley-backend/backend/index.php/site/';
+	private apiUrl: string = 'http://localhost:8888/savebarkley-backend/backend/index.php';
 
-	private headers = {
+	private headersJson = {
 		headers: new HttpHeaders({
 			'Content-Type': 'application/json',
+		})
+	};
+
+	private headersUrlEncoded = {
+		headers: new HttpHeaders({
+			'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8;',
 		})
 	};
 
@@ -20,8 +26,12 @@ export class RestProvider {
 		return this.apiUrl;
 	}
 
-	public getHeaders() {
-		return this.headers;
+	public getHeadersJson() {
+		return this.headersJson;
+	}
+
+	public getHeadersUrlEncoded() {
+		return this.headersUrlEncoded;
 	}
 
 }

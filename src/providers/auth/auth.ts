@@ -24,7 +24,7 @@ export class AuthProvider {
 			password: password
 		};
 
-		return this.http.post(this.restProvider.getUrlApi() + 'login', body, this.restProvider.getHeaders()).toPromise();
+		return this.http.post(this.restProvider.getUrlApi() + '/site/login', body, this.restProvider.getHeadersJson()).toPromise();
 	}
 
 
