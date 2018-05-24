@@ -52,6 +52,7 @@ export class MapPage {
 			});
 
 			this.loadSurroundingShelters(this.map);
+			this.createBots(position.coords.latitude, position.coords.longitude, this.map);
 
 		}, (err) => {
 			console.log(err);
@@ -61,7 +62,7 @@ export class MapPage {
 	/**
 	 * Grab all shelters around user within a 20 mile radius
 	 *
-	 * @param map	Map Instance
+	 * @param map    Map Instance
 	 * @returns {Promise<void>}
 	 */
 	loadSurroundingShelters(map) {
@@ -78,7 +79,7 @@ export class MapPage {
 
 					Object.keys(users).forEach(function (key, index) {
 						let userLoad = users[key].user;
-						MapPage.appendMarkers(userLoad, "guardian", map);
+						MapPage.appendMarker(userLoad, "guardian", map);
 					});
 
 				}).catch((error) => {
@@ -95,7 +96,7 @@ export class MapPage {
 	 * @param makerType      Type of the user. Eg: bot, guardian, hero
 	 * @param map            Map instance
 	 */
-	public static appendMarkers(userLoad, makerType, map) {
+	public static appendMarker(userLoad, makerType, map) {
 
 		let userLatLng = new google.maps.LatLng(parseFloat(userLoad.lat), parseFloat(userLoad.lng));
 
@@ -121,6 +122,38 @@ export class MapPage {
 		console.log(userLoad.first_name + " added to map.");
 
 		// markerArray[pinType + userLoad.id] = marker;
+	}
+
+	/**
+	 * Create 3 bots around some coordinate
+	 *
+	 * @param lat	Latitude
+	 * @param lng	Longitude
+	 * @param map	Map Instance
+	 */
+	public createBots(lat, lng, map) {
+		let icon = {
+			url: "../../assets/imgs/map/pin_sb.png",
+			scaledSize: new google.maps.Size(37, 52),
+		};
+
+		for (let i = 0; i < 3; i++) {
+			let userLoad = {
+				about: "Lorem cillum dolore eu fugiat nulla pariatur.",
+				address: null,
+				icon: icon,
+				cover_url: "savebarkley -icones-22.png",
+				user_type: "hero",
+				id: "0",
+				lat: parseFloat(lat) + this.utils.getRandomNumber(-5, 5) / 1000,
+				lng: parseFloat(lng) + this.utils.getRandomNumber(-5, 5) / 1000,
+				name: "Rafael Oliveira",
+				shelter_id: "0",
+				pushpin_type: "bot"
+			};
+
+			MapPage.appendMarker(userLoad, "bot", map);
+		}
 	}
 
 }
