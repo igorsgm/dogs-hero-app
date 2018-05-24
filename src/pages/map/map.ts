@@ -127,9 +127,9 @@ export class MapPage {
 	/**
 	 * Create 3 bots around some coordinate
 	 *
-	 * @param lat	Latitude
-	 * @param lng	Longitude
-	 * @param map	Map Instance
+	 * @param lat    Latitude
+	 * @param lng    Longitude
+	 * @param map    Map Instance
 	 */
 	public createBots(lat, lng, map) {
 		let icon = {
