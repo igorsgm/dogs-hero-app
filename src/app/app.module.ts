@@ -16,12 +16,14 @@ import {AuthProvider} from '../providers/auth/auth';
 import {MapPage} from "../pages/map/map";
 import {Geolocation} from "@ionic-native/geolocation";
 import {UtilsProvider} from '../providers/utils/utils';
+import {DashboardPage} from "../pages/dashboard/dashboard";
 
 @NgModule({
 	declarations: [
 		MyApp,
 		LoginPage,
 		MapPage,
+		DashboardPage,
 	],
 	imports: [
 		BrowserModule,
@@ -36,6 +38,7 @@ import {UtilsProvider} from '../providers/utils/utils';
 		MyApp,
 		LoginPage,
 		MapPage,
+		DashboardPage,
 	],
 	providers: [
 		StatusBar,
