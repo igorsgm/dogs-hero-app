@@ -1,3 +1,31 @@
 page-dashboard {
 
+	ion-toolbar {
+
+		h4 {
+			span {
+				//font-weight: 600;
+				border-bottom: 0.2em solid map_get($colors, secondary) !important;
+			}
+		}
+
+		.toolbar-background {
+			border-style: none !important;
+		}
+	}
+
+	ion-item-divider {
+		border-bottom: 0.1em solid map_get($colors, light-gray) !important;
+		h2 {
+			font-weight: 600 !important;
+		}
+	}
+
+	ion-card-header {
+		.mission-days {
+			display: inline;
+			font-size: 1.3rem;
+			vertical-align: super;
+		}
+	}
 }

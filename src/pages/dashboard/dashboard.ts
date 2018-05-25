@@ -1,18 +1,25 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Storage} from "@ionic/storage";
 
 @IonicPage()
 @Component({
-  selector: 'page-dashboard',
-  templateUrl: 'dashboard.html',
+	selector: 'page-dashboard',
+	templateUrl: 'dashboard.html',
 })
 export class DashboardPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+	user: any;
+	pendingMissions: Array<any>;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DashboardPage');
-  }
+	constructor(public navCtrl: NavController, public navParams: NavParams, public localStorage: Storage) {
+		this.localStorage.get('user').then(user => {
+			this.user = user;
+		});
+	}
+
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad DashboardPage');
+	}
 
 }
