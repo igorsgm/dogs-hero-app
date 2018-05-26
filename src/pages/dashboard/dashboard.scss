@@ -4,7 +4,6 @@ page-dashboard {
 
 		h4 {
 			span {
-				//font-weight: 600;
 				border-bottom: 0.2em solid map_get($colors, secondary) !important;
 			}
 		}
@@ -21,11 +20,20 @@ page-dashboard {
 		}
 	}
 
+	.inline-icon-number {
+		display: inline;
+		vertical-align: super;
+	}
+
 	ion-card-header {
-		.mission-days {
-			display: inline;
+		.inline-icon-number {
 			font-size: 1.3rem;
-			vertical-align: super;
+		}
+
+		.icon-clock {
+			width: 27px !important;
+			display: inline;
+			height: 27px;
 		}
 	}
 }

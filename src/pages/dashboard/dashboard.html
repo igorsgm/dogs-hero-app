@@ -8,7 +8,7 @@
 	
 	<ion-toolbar no-border>
 		<ion-title>
-			<h4 ion-text class="bold">
+			<h4 ion-text class="semi-bold">
 				<span>{{user.username}}</span>
 			</h4>
 		</ion-title>
@@ -18,41 +18,83 @@
 
 <ion-content>
 	
+	<ion-grid>
+		<ion-row>
+			<ion-col col-6>
+				<div>
+					<h6 *ngIf="user" text-uppercase text-center class="bold" ion-text color="secondary">Level {{user.level}}</h6>
+					<div text-center>
+						<ion-img src="../../assets/imgs/dashboard/dog_avatar.png" width="80" height="80"></ion-img>
+					</div>
+				</div>
+				<div>
+					<div>
+						<p *ngIf="level" text-uppercase text-center no-margin class="semi-bold" ion-text color="secondary">{{level.points}} pts</p>
+					</div>
+					<p text-uppercase text-center no-margin ion-text color="gray">A BIG PUPPY</p>
+				</div>
+			</ion-col>
+			
+			<ion-col col-6>
+				<div>
+					<h6 text-uppercase class="semi-bold" ion-text color="gray">BARKLEY PTS</h6>
+					<ion-img src="../../assets/imgs/dashboard/icon_coin.png" width="27" height="27"></ion-img>
+					<h5 *ngIf="user" text-center text-uppercase ion-text color="gray" class="inline-icon-number bold">{{user.points}}</h5>
+				</div>
+				<div>
+					<h6 text-uppercase class="semi-bold" ion-text color="gray">MISSIONS</h6>
+					<ion-col col-3 padding-right>
+						<ion-img src="../../assets/imgs/dashboard/icon_done.png" width="27" height="27"></ion-img>
+						<h5 *ngIf="completedMissions" text-center text-uppercase ion-text color="gray" class="inline-icon-number bold">{{completedMissions.length}}</h5>
+					</ion-col>
+					<ion-col col-3 padding-left>
+						<ion-img src="../../assets/imgs/dashboard/icon_clock.png" width="27" height="27"></ion-img>
+						<h5 *ngIf="pendingMissions" text-center text-uppercase ion-text color="gray" class="inline-icon-number bold">{{pendingMissions.length}}</h5>
+					</ion-col>
+				</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	
+	
 	<ion-item-divider margin-top>
-		<h2 text-uppercase>Missions Expiring</h2>
+		<h2 text-uppercase>MISSIONS EXPIRING</h2>
 	</ion-item-divider>
 	
-	<ion-card no-padding>
-		
-		<ion-card-header no-padding padding-horizontal>
-			<ion-grid>
-				<ion-row>
-					<ion-col col-8>
-						<div>
-							<h2 text-uppercase class="bold" ion-text color="gray">SAVING PRIVATE BORK!</h2>
-						</div>
-						<div>
-							<h3 text-uppercase ion-text color="gray">10 BONZ</h3>
-						</div>
-					</ion-col>
-					<ion-col col-4>
-						<ion-img src="../../assets/imgs/dashboard/icon_clock.png" width="27" height="27"></ion-img>
-						<p text-center text-uppercase class="mission-days bold">167 DAYS</p>
-					</ion-col>
-				</ion-row>
-			</ion-grid>
-		</ion-card-header>
-		
-		<ion-card-content no-padding padding-horizontal margin-horizontal>
-			<div>
-				<p>Private bork has gone on a top secret mission in search for some antidote</p>
-			</div>
-			<ion-item no-padding>
-				<button ion-button clear float-right text-uppercase color="primary" class="bold">
-					<span>View</span>
-				</button>
-			</ion-item>
-		</ion-card-content>
-	
-	</ion-card>
+	<div *ngIf="pendingMissions">
+		<div *ngFor='let pendingMission of pendingMissions'>
+			
+			<ion-card no-padding>
+				<ion-card-header no-padding padding-horizontal>
+					<ion-grid>
+						<ion-row>
+							<ion-col col-8>
+								<div>
+									<h2 text-uppercase class="semi-bold" ion-text color="gray">{{pendingMission.mission.name}}</h2>
+								</div>
+								<div>
+									<h3 text-uppercase ion-text color="gray">{{pendingMission.mission.total_cost}} BONZ</h3>
+								</div>
+							</ion-col>
+							<ion-col col-4>
+								<img class="icon-clock" src="../../assets/imgs/dashboard/icon_clock.png"/>
+								<p text-center text-uppercase class="inline-icon-number semi-bold">{{pendingMission.mission.expires}} DAYS</p>
+							</ion-col>
+						</ion-row>
+					</ion-grid>
+				</ion-card-header>
+				
+				<ion-card-content no-padding padding-horizontal margin-horizontal>
+					<div>
+						<p>{{pendingMission.mission.description}}</p>
+					</div>
+					<ion-item no-padding>
+						<button ion-button clear float-right text-uppercase color="primary" class="semi-bold">
+							<span>View</span>
+						</button>
+					</ion-item>
+				</ion-card-content>
+			</ion-card>
+		</div>
+	</div>
 </ion-content>

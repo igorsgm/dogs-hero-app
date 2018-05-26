@@ -58,7 +58,7 @@ export class MyApp {
 			}
 			console.info(user);
 
-			this.rootPage = MapPage;
+			this.rootPage = DashboardPage;
 		});
 	}
 
