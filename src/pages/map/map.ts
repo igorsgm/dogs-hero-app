@@ -17,12 +17,16 @@ export class MapPage {
 
 	@ViewChild('mapElement') mapElement: ElementRef;
 
+	user: any;
 	map: any;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams,
-				public utils: UtilsProvider,
-				public http: HttpClient, public restProvider: RestProvider,
+				public utils: UtilsProvider, public http: HttpClient, public restProvider: RestProvider,
 				public localStorage: Storage, public geolocation: Geolocation) {
+
+		this.localStorage.get('user').then(user => {
+			this.user = user;
+		});
 	}
 
 	ionViewDidLoad() {
@@ -42,13 +46,11 @@ export class MapPage {
 				center: currentLatLng
 			});
 
-			this.localStorage.get('user').then(user => {
-				new google.maps.Marker({
-					position: currentLatLng,
-					map: this.map,
-					title: user.first_name,
-					user: user
-				});
+			new google.maps.Marker({
+				position: currentLatLng,
+				map: this.map,
+				title: this.user.first_name,
+				user: this.user
 			});
 
 			this.loadSurroundingShelters(this.map);
@@ -66,26 +68,24 @@ export class MapPage {
 	 * @returns {Promise<void>}
 	 */
 	loadSurroundingShelters(map) {
-		return this.localStorage.get('user').then(user => {
 
-			let body = {
-				id: user.id,
-				lat: parseFloat(user.lat) + this.utils.getRandomNumber(-5, 5) / 1000,
-				lng: parseFloat(user.lng) + this.utils.getRandomNumber(-5, 5) / 1000,
-			};
+		let body = {
+			id: this.user.id,
+			lat: parseFloat(this.user.lat) + this.utils.getRandomNumber(-5, 5) / 1000,
+			lng: parseFloat(this.user.lng) + this.utils.getRandomNumber(-5, 5) / 1000,
+		};
 
-			return this.http.post(this.restProvider.getUrlApi() + '/User/GetSurroundingUsers', body, this.restProvider.getHeadersUrlEncoded()).toPromise()
-				.then((users) => {
+		return this.http.post(this.restProvider.getUrlApi() + '/User/GetSurroundingUsers', body, this.restProvider.getHeadersUrlEncoded()).toPromise()
+			.then((users) => {
 
-					Object.keys(users).forEach(function (key, index) {
-						let userLoad = users[key].user;
-						MapPage.appendMarker(userLoad, "guardian", map);
-					});
-
-				}).catch((error) => {
-					console.log(error);
+				Object.keys(users).forEach(function (key, index) {
+					let userLoad = users[key].user;
+					MapPage.appendMarker(userLoad, "guardian", map);
 				});
-		});
+
+			}).catch((error) => {
+				console.log(error);
+			});
 	}
 
 
