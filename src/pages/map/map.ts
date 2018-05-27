@@ -5,6 +5,7 @@ import {Geolocation} from "@ionic-native/geolocation";
 import {HttpClient} from "@angular/common/http";
 import {RestProvider} from "../../providers/rest/rest";
 import {UtilsProvider} from "../../providers/utils/utils";
+import * as $ from 'jquery'
 
 declare var google: any;
 
@@ -19,6 +20,7 @@ export class MapPage {
 
 	user: any;
 	map: any;
+	showMissions: boolean;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams,
 				public utils: UtilsProvider, public http: HttpClient, public restProvider: RestProvider,
@@ -26,6 +28,12 @@ export class MapPage {
 
 		this.localStorage.get('user').then(user => {
 			this.user = user;
+		});
+
+		$(document).on("click", "[data-mission-card]", function () {
+			$('.mission-card:first-child').fadeOut(400, 'swing', function () {
+				$('.mission-card:first-child').appendTo('.missions-container').hide();
+			}).fadeIn(400, 'swing');
 		});
 	}
 
@@ -78,9 +86,9 @@ export class MapPage {
 		return this.http.post(this.restProvider.getUrlApi() + '/User/GetSurroundingUsers', body, this.restProvider.getHeadersUrlEncoded()).toPromise()
 			.then((users) => {
 
-				Object.keys(users).forEach(function (key, index) {
+				Object.keys(users).forEach((key, index) => {
 					let userLoad = users[key].user;
-					MapPage.appendMarker(userLoad, "guardian", map);
+					this.appendMarker(userLoad, "guardian", map);
 				});
 
 			}).catch((error) => {
@@ -96,7 +104,7 @@ export class MapPage {
 	 * @param makerType      Type of the user. Eg: bot, guardian, hero
 	 * @param map            Map instance
 	 */
-	public static appendMarker(userLoad, makerType, map) {
+	public appendMarker(userLoad, makerType, map) {
 
 		let userLatLng = new google.maps.LatLng(parseFloat(userLoad.lat), parseFloat(userLoad.lng));
 
@@ -115,8 +123,9 @@ export class MapPage {
 			user: userLatLng
 		});
 
-		marker.addListener('click', function () {
-			console.log('HIT CLICK');
+		marker.addListener('click', () => {
+			this.showMissions = true;
+			this.getMarkerClickEvent(userLoad);
 		});
 
 		console.log(userLoad.first_name + " added to map.");
@@ -152,7 +161,32 @@ export class MapPage {
 				pushpin_type: "bot"
 			};
 
-			MapPage.appendMarker(userLoad, "bot", map);
+			this.appendMarker(userLoad, "bot", map);
+		}
+	}
+
+	/**
+	 * Grabs marker click event with marker information
+	 *
+	 * @param userLoad
+	 */
+	public getMarkerClickEvent(userLoad) {
+		if (userLoad.user_type === "guardian") {
+
+			this.localStorage.set("guardian_id", userLoad.id);
+			this.localStorage.set("shelter_id", userLoad.shelter_id);
+
+			let body = {
+				guardian_id: userLoad.id,
+				user_id: this.user.id
+			};
+
+			this.http.post(this.restProvider.getUrlApi() + '/shelter/GetShelterMissions', body, this.restProvider.getHeadersUrlEncoded()).toPromise()
+				.then((missions) => {
+					console.log(missions);
+				}).catch((error) => {
+				console.log(error);
+			});
 		}
 	}
 

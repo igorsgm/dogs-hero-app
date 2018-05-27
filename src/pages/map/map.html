@@ -11,4 +11,24 @@
 
 <ion-content>
 	<div #mapElement id="mapElement"></div>
+	
+	<div id="missions-modal" class="missions-container-wrapper" *ngIf="showMissions">
+		<!--<img id="carousel-next" src="arrow.png">-->
+		<div class="missions-container">
+			<div data-mission-card="1" class="mission-card">
+				UM
+			</div>
+			<div data-mission-card="2" class="mission-card">
+				DOIS
+			</div>
+			<div data-mission-card="3" class="mission-card">
+				TRES
+			</div>
+			<div data-mission-card="4" class="mission-card">
+				QUATRO
+			</div>
+			<button ion-button round>Round Button</button>
+		</div>
+		<div class="overlay" (click)="showMissions = false;"></div>
+	</div>
 </ion-content>
