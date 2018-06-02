@@ -128,6 +128,9 @@ export class MapPage {
 		});
 
 		marker.addListener('click', () => {
+			this.showMissions = true;
+			this.missionsCount = 0;
+			this.missions = [];
 			this.getMarkerClickEvent(userLoad);
 		});
 
