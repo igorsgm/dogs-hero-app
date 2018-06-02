@@ -8,7 +8,7 @@
 	
 	<ion-toolbar no-border>
 		<ion-title>
-			<h4 ion-text class="semi-bold">
+			<h4 ion-text class="font-semi-bold">
 				<span>{{user.username}}</span>
 			</h4>
 		</ion-title>
@@ -22,14 +22,14 @@
 		<ion-row>
 			<ion-col col-6>
 				<div>
-					<h6 *ngIf="user" text-uppercase text-center class="bold" ion-text color="secondary">Level {{user.level}}</h6>
+					<h6 *ngIf="user" text-uppercase text-center class="font-bold" ion-text color="secondary">Level {{user.level}}</h6>
 					<div text-center>
 						<ion-img src="../../assets/imgs/dashboard/dog_avatar.png" width="80" height="80"></ion-img>
 					</div>
 				</div>
 				<div>
 					<div>
-						<p *ngIf="level" text-uppercase text-center no-margin class="semi-bold" ion-text color="secondary">{{level.points}} pts</p>
+						<p *ngIf="level" text-uppercase text-center no-margin class="font-semi-bold" ion-text color="secondary">{{level.points}} pts</p>
 					</div>
 					<p text-uppercase text-center no-margin ion-text color="gray">A BIG PUPPY</p>
 				</div>
@@ -37,19 +37,19 @@
 			
 			<ion-col col-6>
 				<div>
-					<h6 text-uppercase class="semi-bold" ion-text color="gray">BARKLEY PTS</h6>
+					<h6 text-uppercase class="font-semi-bold" ion-text color="gray">BARKLEY PTS</h6>
 					<ion-img src="../../assets/imgs/dashboard/icon_coin.png" width="27" height="27"></ion-img>
-					<h5 *ngIf="user" text-center text-uppercase ion-text color="gray" class="inline-icon-number bold">{{user.points}}</h5>
+					<h5 *ngIf="user" text-center text-uppercase ion-text color="gray" class="inline-icon-number font-bold">{{user.points}}</h5>
 				</div>
 				<div>
-					<h6 text-uppercase class="semi-bold" ion-text color="gray">MISSIONS</h6>
+					<h6 text-uppercase class="font-semi-bold" ion-text color="gray">MISSIONS</h6>
 					<ion-col col-3 padding-right>
 						<ion-img src="../../assets/imgs/dashboard/icon_done.png" width="27" height="27"></ion-img>
-						<h5 *ngIf="completedMissions" text-center text-uppercase ion-text color="gray" class="inline-icon-number bold">{{completedMissions.length}}</h5>
+						<h5 *ngIf="completedMissions" text-center text-uppercase ion-text color="gray" class="inline-icon-number font-bold">{{completedMissions.length}}</h5>
 					</ion-col>
 					<ion-col col-3 padding-left>
 						<ion-img src="../../assets/imgs/dashboard/icon_clock.png" width="27" height="27"></ion-img>
-						<h5 *ngIf="pendingMissions" text-center text-uppercase ion-text color="gray" class="inline-icon-number bold">{{pendingMissions.length}}</h5>
+						<h5 *ngIf="pendingMissions" text-center text-uppercase ion-text color="gray" class="inline-icon-number font-bold">{{pendingMissions.length}}</h5>
 					</ion-col>
 				</div>
 			</ion-col>
@@ -70,7 +70,7 @@
 						<ion-row>
 							<ion-col col-8>
 								<div>
-									<h2 text-uppercase class="semi-bold" ion-text color="gray">{{pendingMission.mission.name}}</h2>
+									<h2 text-uppercase class="font-semi-bold" ion-text color="gray">{{pendingMission.mission.name}}</h2>
 								</div>
 								<div>
 									<h3 text-uppercase ion-text color="gray">{{pendingMission.mission.total_cost}} BONZ</h3>
@@ -78,7 +78,7 @@
 							</ion-col>
 							<ion-col col-4>
 								<img class="icon-clock" src="../../assets/imgs/dashboard/icon_clock.png"/>
-								<p text-center text-uppercase class="inline-icon-number semi-bold">{{pendingMission.mission.expires}} DAYS</p>
+								<p text-center text-uppercase class="inline-icon-number font-semi-bold">{{pendingMission.mission.expires}} DAYS</p>
 							</ion-col>
 						</ion-row>
 					</ion-grid>
@@ -89,7 +89,7 @@
 						<p>{{pendingMission.mission.description}}</p>
 					</div>
 					<ion-item no-padding>
-						<button ion-button clear float-right text-uppercase color="primary" class="semi-bold">
+						<button ion-button clear float-right text-uppercase color="primary" class="font-semi-bold">
 							<span>View</span>
 						</button>
 					</ion-item>
