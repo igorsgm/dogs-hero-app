@@ -1,6 +1,6 @@
 <ion-header>
 	<ion-navbar color="primary">
-		<button ion-button small block col-5 menuToggle>
+		<button ion-button menuToggle>
 			<ion-icon name="menu"></ion-icon>
 		</button>
 		<ion-title>
@@ -14,12 +14,12 @@
 	
 	<div id="missions-modal" class="missions-container-wrapper" *ngIf="showMissions">
 		<!--<img id="carousel-next" src="arrow.png">-->
-		<div class="missions-container">
-			<div data-mission-card="1" class="mission-card">
+		<div class="missions-container" *ngIf="showMissions">
+			<div *ngFor="let item of missions" data-mission-card="1" class="mission-card">
 				<ion-card no-margin>
 					<ion-card-header text-center no-padding padding-vertical>
-						<h2 ion-text text-uppercase color="white" class="card-title font-semi-bold">Top secret mission</h2>
-						<p ion-text text-uppercase color="white" class="card-subtitle font-light">Happy tails rescue mission</p>
+						<h2 ion-text text-uppercase color="white" class="card-title font-semi-bold">{{item.mission.name}}</h2>
+						<p ion-text text-uppercase color="white" class="card-subtitle font-light">{{shelter.name}}</p>
 						
 						
 						<ion-grid>
@@ -27,7 +27,7 @@
 								
 								<ion-col col-3 class="mission-icons" padding-horizontal>
 									<img class="icon-mission" src="../../assets/imgs/icons/icon_coin.png"/>
-									<p ion-text text-wrap text-center text-uppercase color="gray" class="inline-icon-number font-semi-bold">300 XP</p>
+									<p ion-text text-wrap text-center text-uppercase color="gray" class="inline-icon-number font-semi-bold">{{item.mission.total_cost}} XP</p>
 								</ion-col>
 								
 								<ion-col col-6>
@@ -36,7 +36,7 @@
 								
 								<ion-col col-3 class="mission-icons" padding-horizontal>
 									<img class="icon-mission" src="../../assets/imgs/icons/icon_clock.png"/>
-									<p ion-text text-wrap text-center text-uppercase color="gray" class="inline-icon-number font-semi-bold">Expire in 3 days</p>
+									<p ion-text text-wrap text-center text-uppercase color="gray" class="inline-icon-number font-semi-bold">Expire in {{item.mission.expires}} days</p>
 								</ion-col>
 							</ion-row>
 						</ion-grid>
@@ -44,181 +44,7 @@
 					</ion-card-header>
 					
 					<ion-card-content>
-						<p text-justify>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?</p>
-						
-						<h3 ion-text text-uppercase color="gray" class="font-bold">We need:</h3>
-						
-						<ion-grid>
-							<ion-row>
-								
-								<ion-col col-6>
-									<p text-justify text-left>1x Blanket Lorme ipsum dolor</p>
-									<p text-justify text-left>1x Blanket</p>
-									<p text-justify text-left>1x Blanket</p>
-								</ion-col>
-								
-								<ion-col col-6>
-									<p text-justify text-center>1x Blanket</p>
-									<p text-justify text-center>1x Blanket</p>
-									<p text-justify text-center>1x Blanket</p>
-								</ion-col>
-							</ion-row>
-							
-							<ion-row justify-content-center>
-								<button ion-button small block col-5 color="secondary" text-uppercase>Details</button>
-							</ion-row>
-						</ion-grid>
-					
-					</ion-card-content>
-				
-				</ion-card>
-			</div>
-			<div data-mission-card="2" class="mission-card">
-				<ion-card no-margin>
-					<ion-card-header text-center no-padding padding-vertical>
-						<h2 ion-text text-uppercase color="white" class="card-title font-semi-bold">Top secret mission</h2>
-						<p ion-text text-uppercase color="white" class="card-subtitle font-light">Happy tails rescue mission</p>
-						
-						
-						<ion-grid>
-							<ion-row justify-content-center>
-								
-								<ion-col col-3 class="mission-icons" padding-horizontal>
-									<img class="icon-mission" src="../../assets/imgs/icons/icon_coin.png"/>
-									<p ion-text text-wrap text-center text-uppercase color="gray" class="inline-icon-number font-semi-bold">300 XP</p>
-								</ion-col>
-								
-								<ion-col col-6>
-									<img class="logo-shelter" src="../../assets/imgs/mission/logo_shelter.png"/>
-								</ion-col>
-								
-								<ion-col col-3 class="mission-icons" padding-horizontal>
-									<img class="icon-mission" src="../../assets/imgs/icons/icon_clock.png"/>
-									<p ion-text text-wrap text-center text-uppercase color="gray" class="inline-icon-number font-semi-bold">Expire in 3 days</p>
-								</ion-col>
-							</ion-row>
-						</ion-grid>
-					
-					</ion-card-header>
-					
-					<ion-card-content>
-						<p text-justify>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?</p>
-						
-						<h3 ion-text text-uppercase color="gray" class="font-bold">We need:</h3>
-						
-						<ion-grid>
-							<ion-row>
-								
-								<ion-col col-6>
-									<p text-justify text-left>1x Blanket Lorme ipsum dolor</p>
-									<p text-justify text-left>1x Blanket</p>
-									<p text-justify text-left>1x Blanket</p>
-								</ion-col>
-								
-								<ion-col col-6>
-									<p text-justify text-center>1x Blanket</p>
-									<p text-justify text-center>1x Blanket</p>
-									<p text-justify text-center>1x Blanket</p>
-								</ion-col>
-							</ion-row>
-							
-							<ion-row justify-content-center>
-								<button ion-button small block col-5 color="secondary" text-uppercase>Details</button>
-							</ion-row>
-						</ion-grid>
-					
-					</ion-card-content>
-				
-				</ion-card>
-			</div>
-			<div data-mission-card="3" class="mission-card">
-				<ion-card no-margin>
-					<ion-card-header text-center no-padding padding-vertical>
-						<h2 ion-text text-uppercase color="white" class="card-title font-semi-bold">Top secret mission</h2>
-						<p ion-text text-uppercase color="white" class="card-subtitle font-light">Happy tails rescue mission</p>
-						
-						
-						<ion-grid>
-							<ion-row justify-content-center>
-								
-								<ion-col col-3 class="mission-icons" padding-horizontal>
-									<img class="icon-mission" src="../../assets/imgs/icons/icon_coin.png"/>
-									<p ion-text text-wrap text-center text-uppercase color="gray" class="inline-icon-number font-semi-bold">300 XP</p>
-								</ion-col>
-								
-								<ion-col col-6>
-									<img class="logo-shelter" src="../../assets/imgs/mission/logo_shelter.png"/>
-								</ion-col>
-								
-								<ion-col col-3 class="mission-icons" padding-horizontal>
-									<img class="icon-mission" src="../../assets/imgs/icons/icon_clock.png"/>
-									<p ion-text text-wrap text-center text-uppercase color="gray" class="inline-icon-number font-semi-bold">Expire in 3 days</p>
-								</ion-col>
-							</ion-row>
-						</ion-grid>
-					
-					</ion-card-header>
-					
-					<ion-card-content>
-						<p text-justify>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?</p>
-						
-						<h3 ion-text text-uppercase color="gray" class="font-bold">We need:</h3>
-						
-						<ion-grid>
-							<ion-row>
-								
-								<ion-col col-6>
-									<p text-justify text-left>1x Blanket Lorme ipsum dolor</p>
-									<p text-justify text-left>1x Blanket</p>
-									<p text-justify text-left>1x Blanket</p>
-								</ion-col>
-								
-								<ion-col col-6>
-									<p text-justify text-center>1x Blanket</p>
-									<p text-justify text-center>1x Blanket</p>
-									<p text-justify text-center>1x Blanket</p>
-								</ion-col>
-							</ion-row>
-							
-							<ion-row justify-content-center>
-								<button ion-button small block col-5 color="secondary" text-uppercase>Details</button>
-							</ion-row>
-						</ion-grid>
-					
-					</ion-card-content>
-				
-				</ion-card>
-			</div>
-			<div data-mission-card="4" class="mission-card">
-				<ion-card no-margin>
-					<ion-card-header text-center no-padding padding-vertical>
-						<h2 ion-text text-uppercase color="white" class="card-title font-semi-bold">Top secret mission</h2>
-						<p ion-text text-uppercase color="white" class="card-subtitle font-light">Happy tails rescue mission</p>
-						
-						
-						<ion-grid>
-							<ion-row justify-content-center>
-								
-								<ion-col col-3 class="mission-icons" padding-horizontal>
-									<img class="icon-mission" src="../../assets/imgs/icons/icon_coin.png"/>
-									<p ion-text text-wrap text-center text-uppercase color="gray" class="inline-icon-number font-semi-bold">300 XP</p>
-								</ion-col>
-								
-								<ion-col col-6>
-									<img class="logo-shelter" src="../../assets/imgs/mission/logo_shelter.png"/>
-								</ion-col>
-								
-								<ion-col col-3 class="mission-icons" padding-horizontal>
-									<img class="icon-mission" src="../../assets/imgs/icons/icon_clock.png"/>
-									<p ion-text text-wrap text-center text-uppercase color="gray" class="inline-icon-number font-semi-bold">Expire in 3 days</p>
-								</ion-col>
-							</ion-row>
-						</ion-grid>
-					
-					</ion-card-header>
-					
-					<ion-card-content>
-						<p text-justify>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?</p>
+						<p text-justify>{{item.mission.description}}</p>
 						
 						<h3 ion-text text-uppercase color="gray" class="font-bold">We need:</h3>
 						
@@ -248,6 +74,6 @@
 				</ion-card>
 			</div>
 		</div>
-		<div class="overlay" (click)="showMissions = false;"></div>
+		<div class="overlay" (click)="closeMissions()"></div>
 	</div>
 </ion-content>

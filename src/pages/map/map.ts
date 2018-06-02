@@ -21,6 +21,10 @@ export class MapPage {
 	user: any;
 	map: any;
 	showMissions: boolean;
+	missions: Array<any> = [];
+	missionsCount: any = 0;
+	shelter: any;
+
 
 	constructor(public navCtrl: NavController, public navParams: NavParams,
 				public utils: UtilsProvider, public http: HttpClient, public restProvider: RestProvider,
@@ -124,7 +128,6 @@ export class MapPage {
 		});
 
 		marker.addListener('click', () => {
-			this.showMissions = true;
 			this.getMarkerClickEvent(userLoad);
 		});
 
@@ -171,23 +174,41 @@ export class MapPage {
 	 * @param userLoad
 	 */
 	public getMarkerClickEvent(userLoad) {
+
 		if (userLoad.user_type === "guardian") {
 
 			this.localStorage.set("guardian_id", userLoad.id);
 			this.localStorage.set("shelter_id", userLoad.shelter_id);
 
+
 			let body = {
-				guardian_id: userLoad.id,
-				user_id: this.user.id
+				shelter_id: userLoad.shelter_id,
+				hero_id: userLoad.id,
+				mission_id: null
 			};
 
-			this.http.post(this.restProvider.getUrlApi() + '/shelter/GetShelterMissions', body, this.restProvider.getHeadersUrlEncoded()).toPromise()
-				.then((missions) => {
-					console.log(missions);
+			this.http.post(this.restProvider.getUrlApi() + '/mission/getMissions', body, this.restProvider.getHeadersUrlEncoded()).toPromise()
+				.then((data: any) => {
+
+					this.missions = [];
+					this.missionsCount = data.count;
+
+					Object.keys(data.missions).forEach((key, index) => {
+						this.missions.push(data.missions[key]);
+						this.showMissions = true;
+					});
+
+					this.shelter = data.shelter;
 				}).catch((error) => {
 				console.log(error);
 			});
 		}
+	}
+
+	public closeMissions() {
+		this.showMissions = false;
+		this.missionsCount = 0;
+		this.missions = [];
 	}
 
 }
