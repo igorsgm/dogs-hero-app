@@ -20,12 +20,28 @@ page-map {
 		cursor: pointer;
 		left: 50%;
 		visibility: visible;
-		height: 55vh;
+		height: 70vh;
 		width: 80%;
 		box-sizing: border-box;
 		-moz-transition: all 0.4s ease-in-out;
 		-webkit-transition: all 0.4s ease-in-out;
 		transform: translate(-50%, -50%) !important;
+
+		@media screen and (min-width: 375px) and (min-height: 660px) and (max-height: 799px) {
+			height: 65vh;
+		}
+
+		@media screen and (min-width: 375px) and (min-height: 800px) {
+			height: 55vh;
+		}
+
+		@media screen and (min-width: 410px) and (min-height: 730px) {
+			height: 62vh;
+		}
+
+		@media screen and (min-width: 410px) and (max-width: 500px) and (min-height: 820px) {
+			height: 55vh;
+		}
 
 		ion-card {
 			display: unset;
@@ -41,39 +57,56 @@ page-map {
 				border-top-right-radius: 5px;
 
 				h2 {
-					font-size: 1.2em;
+					font-size: 4.6vw;
 				}
 
 				.card-subtitle {
-					font-size: 0.75em;
+					font-size: 2.9vw;
 				}
 
-				.header-info {
+				.logo-shelter {
+					width: 75%;
+					max-width: 130px;
+					border-radius: 50%;
+					margin: auto;
+					padding: 0.3em;
+					box-shadow: 0 0 0 0.15em map_get($colors, secondary);
+				}
 
-					.logo-shelter {
-						width: 40%;
-						max-width: 130px;
-						border-radius: 50%;
-						margin-left: auto;
-						margin-right: auto;
-						padding: 0.3em;
-						box-shadow: 0 0 0 0.15em map_get($colors, secondary);
-					}
+				.logo-border {
+					border-radius: 50%;
+					width: 100px;
+					height: 100px;
+					border: 3px solid red;
+					display: block;
+					margin-left: auto;
+					margin-right: auto;
+				}
 
-					.logo-border {
-						border-radius: 50%;
-						width: 100px;
-						height: 100px;
-						border: 3px solid red;
-						display: block;
-						margin-left: auto;
-						margin-right: auto;
+				ion-grid {
+					.mission-icons {
+						margin-top: 4.5em;
+
+						p {
+							line-height: 0.9em;
+							font-size: 2.5vw;
+						}
 					}
 				}
 			}
 
 			ion-card-content {
-				margin-top: 6em;
+				margin-top: 18vw;
+				padding: 0 2.5em;
+				line-height: 4vw !important;
+
+				h3 {
+					font-size: 4vw;
+					padding-top: 2vw;
+				}
+				p {
+					font-size: 3vw;
+				}
 			}
 		}
 	}
@@ -90,7 +123,7 @@ page-map {
 
 	.mission-card:nth-child(2) {
 		z-index: 9;
-		top: 47%;
+		top: 46%;
 		-webkit-transform-origin: bottom;
 		transform-origin: top;
 		-webkit-transform: scale(0.9);
@@ -101,7 +134,7 @@ page-map {
 
 	.mission-card:nth-child(3) {
 		z-index: 8;
-		top: 49%;
+		top: 47%;
 		-webkit-transform-origin: bottom;
 		transform-origin: top;
 		-webkit-transform: scale(0.8);
@@ -112,7 +145,7 @@ page-map {
 
 	.mission-card:nth-child(4) {
 		z-index: 7;
-		top: 51%;
+		top: 48%;
 		-webkit-transform-origin: top;
 		transform-origin: top;
 		-webkit-transform: scale(0.7);
@@ -123,7 +156,7 @@ page-map {
 
 	.mission-card:nth-child(5) {
 		z-index: 6;
-		top: 53%;
+		top: 49%;
 		-webkit-transform-origin: top;
 		transform-origin: top;
 		-webkit-transform: scale(0.6);
