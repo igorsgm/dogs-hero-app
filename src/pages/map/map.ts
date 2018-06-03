@@ -117,24 +117,22 @@ export class MapPage {
 			scaledSize: new google.maps.Size(37, 52),
 		};
 
-		let marker = new google.maps.Marker({
+		let markerData = {
 			id: makerType + userLoad.id,
 			position: userLatLng,
 			map: map,
 			title: userLoad.first_name,
 			label: userLoad.first_name,
 			icon: icon,
-			user: userLatLng
-		});
+			user: userLoad,
+			missions: [],
+			missionsCount: 0,
+			shelter: null
+		};
 
-		marker.addListener('click', () => {
-			this.showMissions = true;
-			this.missionsCount = 0;
-			this.missions = [];
-			this.getMarkerClickEvent(userLoad);
-		});
-
-		console.log(userLoad.first_name + " added to map.");
+		if (userLoad.user_type === "guardian") {
+			this.getMarkerShelterClickEvent(markerData, userLoad);
+		}
 
 		// markerArray[pinType + userLoad.id] = marker;
 	}
@@ -174,44 +172,48 @@ export class MapPage {
 	/**
 	 * Grabs marker click event with marker information
 	 *
+	 * @param markerObj
 	 * @param userLoad
 	 */
-	public getMarkerClickEvent(userLoad) {
+	public getMarkerShelterClickEvent(markerObj, userLoad) {
 
-		if (userLoad.user_type === "guardian") {
+		this.http.post(this.restProvider.getUrlApi() + '/mission/getMissions', {
+			shelter_id: userLoad.shelter_id,
+			hero_id: userLoad.id,
+			mission_id: null
+		}, this.restProvider.getHeadersUrlEncoded())
+			.toPromise()
+			.then((data: any) => {
+				Object.keys(data.missions).forEach((key, index) => {
+					console.log(data);
+					markerObj.missions.push(data.missions[key]);
+				});
 
-			this.localStorage.set("guardian_id", userLoad.id);
-			this.localStorage.set("shelter_id", userLoad.shelter_id);
+				markerObj.missionsCount = data.count;
+				markerObj.shelter = data.shelter;
 
+				let marker = new google.maps.Marker(markerObj);
 
-			let body = {
-				shelter_id: userLoad.shelter_id,
-				hero_id: userLoad.id,
-				mission_id: null
-			};
+				marker.addListener('click', () => {
+					this.missions = markerObj.missions;
+					this.missionsCount = markerObj.missionsCount;
+					this.shelter = markerObj.shelter;
+					this.showMissions = true;
+				});
 
-			this.http.post(this.restProvider.getUrlApi() + '/mission/getMissions', body, this.restProvider.getHeadersUrlEncoded()).toPromise()
-				.then((data: any) => {
+				console.log(userLoad.first_name + " added to map.");
 
-					this.missions = [];
-					this.missionsCount = data.count;
-
-					Object.keys(data.missions).forEach((key, index) => {
-						this.missions.push(data.missions[key]);
-						this.showMissions = true;
-					});
-
-					this.shelter = data.shelter;
-				}).catch((error) => {
-				console.log(error);
-			});
-		}
+			}).catch((error) => {
+			console.log(error);
+		});
 	}
 
 	public closeMissions() {
 		this.showMissions = false;
+
 		this.missionsCount = 0;
 		this.missions = [];
+		this.shelter = null;
 	}
 
 }
