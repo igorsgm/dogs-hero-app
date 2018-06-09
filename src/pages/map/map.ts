@@ -216,4 +216,11 @@ export class MapPage {
 		this.shelter = null;
 	}
 
+	public openMission(mission, shelter) {
+		this.navCtrl.push('MissionPage', {
+			mission: mission,
+			shelter: shelter
+		});
+	}
+
 }

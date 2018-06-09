@@ -1,0 +1,55 @@
+<ion-header>
+	<ion-navbar color="primary">
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title text-uppercase>Mission</ion-title>
+	</ion-navbar>
+</ion-header>
+
+
+<ion-content>
+	<ion-card no-margin>
+		<ion-card-header text-center no-padding padding-vertical>
+			<h1 ion-text text-uppercase color="white" class="card-title font-semi-bold">{{item.mission.name}}</h1>
+			<h2 ion-text text-uppercase color="white" class="card-subtitle font-light">{{shelter.name}}</h2>
+			
+			
+			<ion-grid>
+				<ion-row justify-content-center>
+					
+					<ion-col col-3 class="mission-icons" margin-horizontal>
+						<img class="icon-mission" src="../../assets/imgs/mission/icon_xp.png"/>
+						<p ion-text text-wrap text-center text-uppercase color="gray" class="inline-icon-number font-semi-bold">{{item.mission.total_cost}} XP</p>
+					</ion-col>
+					
+					<ion-col col-3 class="mission-icons" margin-horizontal>
+						<img class="icon-mission" src="../../assets/imgs/mission/icon_time.png"/>
+						<p ion-text text-wrap text-center text-uppercase color="gray" class="inline-icon-number font-semi-bold">Expire in {{item.mission.expires}} days</p>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		
+		</ion-card-header>
+		
+		<ion-card-content>
+			
+			<div class="mission-description">
+				<p text-justify>{{item.mission.description}}</p>
+				<h3 ion-text text-uppercase color="gray" class="font-bold">We need:</h3>
+			</div>
+			
+			<ion-list no-lines>
+				<ion-item *ngFor="let missionItem of item.mission_items">
+					<p>{{missionItem.name}} - Price: $ {{missionItem.value}}</p>
+				</ion-item>
+			</ion-list>
+			
+			<ion-row justify-content-center margin-top class="mission-buttons">
+				<button ion-button col-5 small color="secondary" margin-right text-uppercase class="font-semi-bold">Accept Mission</button>
+				<button ion-button col-5 small color="secondary" margin-left text-uppercase class="font-semi-bold">Instant-complete</button>
+			</ion-row>
+		</ion-card-content>
+	
+	</ion-card>
+</ion-content>

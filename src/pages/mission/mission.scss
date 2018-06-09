@@ -1,0 +1,56 @@
+page-mission {
+
+	ion-content {
+
+		ion-card {
+			display: unset;
+
+			ion-card-header {
+				overflow: initial;
+				background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url("../../assets/imgs/mission/dog_bg.jpg");
+				background-position: center top;
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				height: 8.5em;
+
+				ion-grid {
+					.mission-icons {
+						margin-top: 1.5em;
+						p {
+							line-height: 1em;
+						}
+					}
+					.icon-mission {
+						width: 50px !important;
+						display: inline;
+						height: 50px;
+					}
+				}
+			}
+
+			ion-card-content {
+				margin-top: 18vw;
+
+				.mission-description {
+					padding: 0 2.5em !important;
+				}
+
+				h3 {
+					font-size: 4vw;
+					padding-top: 2vw;
+				}
+				p {
+					font-size: 3vw;
+				}
+
+			}
+
+			.mission-buttons {
+				button {
+					font-size: 3vw;
+					height: 2.5em;
+				}
+			}
+		}
+	}
+}

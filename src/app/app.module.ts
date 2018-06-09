@@ -9,6 +9,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 // Pages
 import {MyApp} from './app.component';
 import {LoginPage} from "../pages/login/login";
+import {DashboardPage} from "../pages/dashboard/dashboard";
 // Providers
 import {RestProvider} from '../providers/rest/rest';
 import {HttpClientModule} from '@angular/common/http';
@@ -16,7 +17,6 @@ import {AuthProvider} from '../providers/auth/auth';
 import {MapPage} from "../pages/map/map";
 import {Geolocation} from "@ionic-native/geolocation";
 import {UtilsProvider} from '../providers/utils/utils';
-import {DashboardPage} from "../pages/dashboard/dashboard";
 
 @NgModule({
 	declarations: [
