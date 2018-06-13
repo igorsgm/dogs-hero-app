@@ -223,4 +223,10 @@ export class MapPage {
 		});
 	}
 
+	public openShelter(shelter) {
+		this.navCtrl.push('ShelterPage', {
+			shelter: shelter
+		});
+	}
+
 }
