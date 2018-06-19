@@ -13,21 +13,27 @@ page-dashboard {
 		}
 	}
 
-	ion-item-divider {
-		border-bottom: 0.1em solid map_get($colors, light-gray) !important;
-		h2 {
-			font-weight: 600 !important;
+	ion-content {
+		ion-item-divider {
+			border-bottom: 0.1em solid map_get($colors, light-gray) !important;
+			h2 {
+				font-weight: 600 !important;
+			}
 		}
-	}
 
-	.inline-icon-number {
-		display: inline;
-		vertical-align: super;
-	}
-
-	ion-card-header {
 		.inline-icon-number {
-			font-size: 1.3rem;
+			display: inline;
+			vertical-align: super;
+		}
+
+		.link-bellow-icon {
+			margin-top: -0.7em;
+		}
+
+		ion-card-header {
+			.inline-icon-number {
+				font-size: 1.3rem;
+			}
 		}
 	}
 }

@@ -69,4 +69,8 @@ export class DashboardPage {
 		});
 	}
 
+	public openUserPage() {
+		this.navCtrl.push('UserPage');
+	}
+
 }
