@@ -12,6 +12,8 @@ export class ShelterPage {
 
 	constructor(public navCtrl: NavController, public navParams: NavParams) {
 		this.shelter = this.navParams.data.shelter;
+
+		console.log(this.shelter);
 	}
 
 	ionViewDidLoad() {

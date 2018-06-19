@@ -7,7 +7,7 @@ page-mission {
 
 			ion-card-header {
 				overflow: initial;
-				background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url("../../assets/imgs/mission/dog_bg.jpg");
+				background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url("/assets/imgs/mission/dog_bg.jpg");
 				background-position: center top;
 				background-repeat: no-repeat;
 				background-size: 100% 100%;
@@ -31,7 +31,7 @@ page-mission {
 			ion-card-content {
 				margin-top: 18vw;
 
-				.mission-description {
+				.shelter-description {
 					padding: 0 2.5em !important;
 				}
 

@@ -113,7 +113,7 @@ export class MapPage {
 		let userLatLng = new google.maps.LatLng(parseFloat(userLoad.lat), parseFloat(userLoad.lng));
 
 		let icon = {
-			url: userLoad.icon.url == undefined ? "../../assets/imgs/map/pin_sb.png" : userLoad.icon.url,
+			url: userLoad.icon.url == undefined ? "/assets/imgs/map/pin_sb.png" : userLoad.icon.url,
 			scaledSize: new google.maps.Size(37, 52),
 		};
 
@@ -146,7 +146,7 @@ export class MapPage {
 	 */
 	public createBots(lat, lng, map) {
 		let icon = {
-			url: "../../assets/imgs/map/pin_dog.png",
+			url: "/assets/imgs/map/pin_dog.png",
 			scaledSize: new google.maps.Size(37, 52),
 		};
 

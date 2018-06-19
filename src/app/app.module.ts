@@ -17,6 +17,7 @@ import {AuthProvider} from '../providers/auth/auth';
 import {MapPage} from "../pages/map/map";
 import {Geolocation} from "@ionic-native/geolocation";
 import {UtilsProvider} from '../providers/utils/utils';
+import {ShelterPage} from "../pages/shelter/shelter";
 
 @NgModule({
 	declarations: [
@@ -24,6 +25,7 @@ import {UtilsProvider} from '../providers/utils/utils';
 		LoginPage,
 		MapPage,
 		DashboardPage,
+		ShelterPage
 	],
 	imports: [
 		BrowserModule,
@@ -39,6 +41,7 @@ import {UtilsProvider} from '../providers/utils/utils';
 		LoginPage,
 		MapPage,
 		DashboardPage,
+		ShelterPage,
 	],
 	providers: [
 		StatusBar,
