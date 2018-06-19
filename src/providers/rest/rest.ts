@@ -4,7 +4,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 @Injectable()
 export class RestProvider {
 
-	private apiUrl: string = 'http://localhost:8888/savebarkley-backend/backend/index.php';
+	private apiUrl: string = 'http://localhost:8888/barkley_backend/index.php';
 
 	private headersJson = {
 		headers: new HttpHeaders({
