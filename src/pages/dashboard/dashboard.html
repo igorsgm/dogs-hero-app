@@ -21,21 +21,24 @@
 	<ion-grid>
 		<ion-row>
 			<ion-col col-6>
-				<div>
-					<h6 *ngIf="user" text-uppercase text-center class="font-bold" ion-text color="secondary">Level {{user.level}}</h6>
+				<h6 *ngIf="user" text-uppercase text-center class="font-bold" ion-text no-margin margin-bottom color="secondary">LEVEL {{user.level}}</h6>
+				<div class="avatar">
 					<div text-center>
-						<ion-img src="/assets/imgs/dashboard/dog_avatar.png" width="80" height="80"></ion-img>
+						<div data-ring="" class="ring">
+							<div class="ring-progress" data-ring-progress=""></div>
+						</div>
+						<ion-img src="/assets/imgs/dashboard/dog_avatar.png" width="85" height="85"></ion-img>
 					</div>
-				</div>
-				<div>
 					<div>
-						<p *ngIf="level" text-uppercase text-center no-margin class="font-semi-bold" ion-text color="secondary">{{level.points}} PTS</p>
-					</div>
-					<p text-uppercase text-center no-margin ion-text color="gray">A BIG PUPPY</p>
-					<div text-uppercase text-center no-margin ion-text class="link-bellow-icon">
-						<button ion-button clear small color="primary" class="font-semi-bold">
-							<small>EDIT AVATAR</small>
-						</button>
+						<div>
+							<p *ngIf="level" text-uppercase text-center no-margin class="font-semi-bold" ion-text color="secondary">{{level.points}} PTS</p>
+						</div>
+						<p text-uppercase text-center no-margin ion-text color="gray">A BIG PUPPY</p>
+						<div text-uppercase text-center no-margin ion-text class="link-bellow-icon">
+							<button ion-button clear small color="primary" class="font-semi-bold">
+								<small>EDIT AVATAR</small>
+							</button>
+						</div>
 					</div>
 				</div>
 			</ion-col>

@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Storage} from "@ionic/storage";
 import {HttpClient} from "@angular/common/http";
 import {RestProvider} from "../../providers/rest/rest";
+import * as $ from 'jquery'
 
 @IonicPage()
 @Component({
@@ -28,6 +29,7 @@ export class DashboardPage {
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad DashboardPage');
+		this.rotateRing(50);
 	}
 
 	loadLevelInfo() {
@@ -67,6 +69,21 @@ export class DashboardPage {
 			}).catch((error) => {
 			console.log(error);
 		});
+	}
+
+	public rotateRing(percent) {
+		if (percent > 33 && percent <= 66) {
+			percent = percent - 33;
+			$("[data-ring-progress]").addClass("top-border");
+		} else if (percent > 66) {
+			$("[data-ring-progress]").addClass("top-border");
+			$("[data-ring-progress]").addClass("right-border");
+			percent = percent - 66;
+		}
+
+		var degrees = -90 + (90 / 33) * percent;
+
+		$("[data-ring-progress]").attr("style", 'transform: rotate(' + degrees + 'deg)');
 	}
 
 	public openUserPage() {
