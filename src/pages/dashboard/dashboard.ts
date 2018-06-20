@@ -111,4 +111,8 @@ export class DashboardPage {
 		this.navCtrl.push('UserPage');
 	}
 
+	public openAvatarPage() {
+		this.navCtrl.push('AvatarPage');
+	}
+
 }
