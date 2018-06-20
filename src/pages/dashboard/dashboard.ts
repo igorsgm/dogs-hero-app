@@ -71,7 +71,7 @@ export class DashboardPage {
 		});
 	}
 
-	public rotateRing(percent) {
+	rotateRing(percent) {
 		if (percent > 33 && percent <= 66) {
 			percent = percent - 33;
 			$("[data-ring-progress]").addClass("top-border");
@@ -84,6 +84,10 @@ export class DashboardPage {
 		var degrees = -90 + (90 / 33) * percent;
 
 		$("[data-ring-progress]").attr("style", 'transform: rotate(' + degrees + 'deg)');
+	}
+
+	public openCreditPage() {
+		this.navCtrl.push('CreditPage');
 	}
 
 	public openUserPage() {

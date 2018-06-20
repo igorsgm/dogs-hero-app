@@ -52,7 +52,7 @@
 							<h5 *ngIf="user" text-center text-uppercase ion-text color="gray" class="inline-icon-number font-bold">{{user.points}}</h5>
 						</div>
 						<div class="link-bellow-icon">
-							<button ion-button clear small text-uppercase color="primary" class="font-semi-bold">
+							<button ion-button clear small text-uppercase color="primary" class="font-semi-bold"  (click)="openCreditPage()">
 								<span>BUY MORE</span>
 							</button>
 						</div>
