@@ -122,7 +122,6 @@ export class MapPage {
 			position: userLatLng,
 			map: map,
 			title: userLoad.first_name,
-			label: userLoad.first_name,
 			icon: icon,
 			user: userLoad,
 			missions: [],
