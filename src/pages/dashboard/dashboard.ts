@@ -13,7 +13,11 @@ import * as $ from 'jquery'
 export class DashboardPage {
 
 	user: any;
+	avatar: any;
+	abilities: any;
+	breed: any;
 	level: any;
+	ringPercent: any;
 	completedMissions: any;
 	pendingMissions: any;
 
@@ -21,7 +25,7 @@ export class DashboardPage {
 		this.localStorage.get('user').then(user => {
 			this.user = user;
 
-			this.loadLevelInfo();
+			this.loadAvatar();
 			this.loadCompletedMissions();
 			this.loadPendingMissions();
 		});
@@ -29,17 +33,20 @@ export class DashboardPage {
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad DashboardPage');
-		this.rotateRing(50);
 	}
 
-	loadLevelInfo() {
-		let body = {
-			level: this.user.level
-		};
+	loadAvatar() {
+		this.http.get(this.restProvider.getUrlApi() + '/avatar/getAvatar?id=' + this.user.id + '&get_type=av_user_id', this.restProvider.getHeadersJson()).toPromise()
+			.then((data: any) => {
+				console.log(data);
 
-		this.http.post(this.restProvider.getUrlApi() + '/level/getLevelInfo', body, this.restProvider.getHeadersJson()).toPromise()
-			.then((level) => {
-				this.level = level;
+				this.avatar = data.avatar;
+				this.breed = data.breed;
+				this.level = data.level;
+				this.abilities = data.abilities;
+				this.ringPercent = this.getLevelRingPercent();
+
+				this.rotateRing(this.ringPercent);
 			}).catch((error) => {
 			console.log(error);
 		});
@@ -69,6 +76,16 @@ export class DashboardPage {
 			}).catch((error) => {
 			console.log(error);
 		});
+	}
+
+	getLevelRingPercent() {
+		let percent = (this.level.points * 100) / this.level.level_req;
+
+		if (percent > 100) {
+			percent = 100;
+		}
+
+		return percent;
 	}
 
 	rotateRing(percent) {

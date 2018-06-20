@@ -21,7 +21,7 @@
 	<ion-grid>
 		<ion-row>
 			<ion-col col-6>
-				<h6 *ngIf="user" text-uppercase text-center class="font-bold" ion-text no-margin margin-bottom color="secondary">LEVEL {{user.level}}</h6>
+				<h6 *ngIf="avatar" text-uppercase text-center class="font-bold" ion-text no-margin margin-bottom color="secondary">LEVEL {{avatar.av_level_id}}</h6>
 				<div class="avatar">
 					<div text-center>
 						<div data-ring="" class="ring">
@@ -31,9 +31,9 @@
 					</div>
 					<div>
 						<div>
-							<p *ngIf="level" text-uppercase text-center no-margin class="font-semi-bold" ion-text color="secondary">{{level.points}} PTS</p>
+							<p *ngIf="level" text-uppercase text-center no-margin class="font-semi-bold" ion-text color="secondary">{{ringPercent >= 100 ? 'READY TO LEVEL UP!' : (level.points + '/' + level.level_req + ' PTS')}}</p>
 						</div>
-						<p text-uppercase text-center no-margin ion-text color="gray">A BIG PUPPY</p>
+						<p *ngIf="breed" text-uppercase text-center no-margin ion-text color="gray">{{breed.name}}</p>
 						<div text-uppercase text-center no-margin ion-text class="link-bellow-icon">
 							<button ion-button clear small color="primary" class="font-semi-bold">
 								<small>EDIT AVATAR</small>
