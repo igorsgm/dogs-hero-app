@@ -51,18 +51,9 @@
 						
 						<ion-grid>
 							<ion-row>
-								
-								<ion-col col-6>
-									<p text-justify text-left>1x Blanket</p>
-									<p text-justify text-left>1x Blanket</p>
-									<p text-justify text-left>1x Blanket</p>
-								</ion-col>
-								
-								<ion-col col-6>
-									<p text-justify text-center>1x Blanket</p>
-									<p text-justify text-center>1x Blanket</p>
-									<p text-justify text-center>1x Blanket</p>
-								</ion-col>
+								<p *ngFor="let missionItem of item.mission_items" text-justify text-left>
+									{{missionItem.name}}
+								</p>
 							</ion-row>
 							
 							<ion-row justify-content-center>
