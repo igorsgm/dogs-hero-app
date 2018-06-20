@@ -46,8 +46,8 @@
 			</ion-list>
 			
 			<ion-row justify-content-center margin-top class="mission-buttons">
-				<button ion-button col-5 small color="secondary" margin-right text-uppercase class="font-semi-bold">Accept Mission</button>
-				<button ion-button col-5 small color="secondary" margin-left text-uppercase class="font-semi-bold">Instant-complete</button>
+				<button ion-button col-5 small color="secondary" margin-right text-uppercase class="font-semi-bold" (click)="acceptMission('item')">Accept Mission</button>
+				<button ion-button col-5 small color="secondary" margin-left text-uppercase class="font-semi-bold" (click)="acceptMission('credit')">Instant-complete</button>
 			</ion-row>
 		</ion-card-content>
 	
