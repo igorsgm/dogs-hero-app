@@ -9,9 +9,9 @@
 
 
 <ion-content>
-	<ion-card no-margin>
+	<ion-card no-margin *ngIf="mission">
 		<ion-card-header text-center no-padding padding-vertical>
-			<h1 ion-text text-uppercase color="white" class="card-title font-semi-bold">{{item.mission.name}}</h1>
+			<h1 ion-text text-uppercase color="white" class="card-title font-semi-bold">{{mission.name}}</h1>
 			<h2 ion-text text-uppercase color="white" class="card-subtitle font-light">{{shelter.name}}</h2>
 			
 			
@@ -20,12 +20,12 @@
 					
 					<ion-col col-3 class="mission-icons" margin-horizontal>
 						<img class="icon-mission" src="/assets/imgs/mission/icon_xp.png"/>
-						<p ion-text text-wrap text-center text-uppercase color="gray" class="inline-icon-number font-semi-bold">{{item.mission.total_cost}} XP</p>
+						<p ion-text text-wrap text-center text-uppercase color="gray" class="inline-icon-number font-semi-bold">{{mission.total_cost}} XP</p>
 					</ion-col>
 					
 					<ion-col col-3 class="mission-icons" margin-horizontal>
 						<img class="icon-mission" src="/assets/imgs/mission/icon_time.png"/>
-						<p ion-text text-wrap text-center text-uppercase color="gray" class="inline-icon-number font-semi-bold">Expire in {{item.mission.expires}} days</p>
+						<p ion-text text-wrap text-center text-uppercase color="gray" class="inline-icon-number font-semi-bold">Expire in {{mission.expires}} days</p>
 					</ion-col>
 				</ion-row>
 			</ion-grid>
@@ -35,12 +35,12 @@
 		<ion-card-content>
 			
 			<div class="mission-description">
-				<p text-justify>{{item.mission.description}}</p>
+				<p text-justify>{{mission.description}}</p>
 				<h3 ion-text text-uppercase color="gray" class="font-bold">We need:</h3>
 			</div>
 			
 			<ion-list no-lines>
-				<ion-item *ngFor="let missionItem of item.mission_items">
+				<ion-item *ngFor="let missionItem of missionItems">
 					<p>{{missionItem.name}} - Price: $ {{missionItem.value}}</p>
 				</ion-item>
 			</ion-list>

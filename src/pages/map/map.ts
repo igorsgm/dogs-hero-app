@@ -217,8 +217,7 @@ export class MapPage {
 
 	public openMission(mission, shelter) {
 		this.navCtrl.push('MissionPage', {
-			mission: mission,
-			shelter: shelter
+			mission_id: mission
 		});
 	}
 

@@ -116,4 +116,10 @@ export class DashboardPage {
 		this.navCtrl.push('AvatarPage');
 	}
 
+	public openMissionPage(idMission) {
+		this.navCtrl.push('MissionPage', {
+			mission_id: idMission,
+		});
+	}
+
 }
