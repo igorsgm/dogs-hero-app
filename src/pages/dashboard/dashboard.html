@@ -52,7 +52,7 @@
 							<h5 *ngIf="user" text-center text-uppercase ion-text color="gray" class="inline-icon-number font-bold">{{user.points}}</h5>
 						</div>
 						<div class="link-bellow-icon">
-							<button ion-button clear small text-uppercase color="primary" class="font-semi-bold"  (click)="openCreditPage()">
+							<button ion-button clear small text-uppercase color="primary" class="font-semi-bold" (click)="openCreditPage()">
 								<span>BUY MORE</span>
 							</button>
 						</div>
@@ -102,7 +102,9 @@
 							</ion-col>
 							<ion-col col-4>
 								<img class="icon-mission" src="/assets/imgs/icons/icon_clock.png"/>
-								<p text-center text-uppercase class="inline-icon-number font-semi-bold">{{pendingMission.mission.expires}} DAYS</p>
+								<p text-center text-uppercase class="inline-icon-number font-semi-bold">
+									<span ion-text color="{{pendingMission.mission.expires <= 1 ? 'danger' : ''}}">{{pendingMission.mission.expires == 1 ? (pendingMission.mission.expires  + " DAY") : (pendingMission.mission.expires  + " DAYS")}}</span>
+								</p>
 							</ion-col>
 						</ion-row>
 					</ion-grid>

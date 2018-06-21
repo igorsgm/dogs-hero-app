@@ -20,11 +20,12 @@ export class DashboardPage {
 	ringPercent: any;
 	completedMissions: any;
 	pendingMissions: any;
+	dynamicColor: any;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, public localStorage: Storage, public restProvider: RestProvider, public http: HttpClient) {
 		this.localStorage.get('user').then(user => {
 			this.user = user;
-
+			this.dynamicColor = 'red';
 			this.loadAvatar();
 			this.loadCompletedMissions();
 			this.loadPendingMissions();
