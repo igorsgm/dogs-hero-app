@@ -221,9 +221,9 @@ export class MapPage {
 		});
 	}
 
-	public openShelter(shelter) {
+	public openShelter(idShelter) {
 		this.navCtrl.push('ShelterPage', {
-			shelter: shelter
+			shelter_id: idShelter
 		});
 	}
 
