@@ -52,6 +52,13 @@ page-shelter {
 
 			ion-card-content {
 				margin-top: 18vw;
+				h3 {
+					font-size: 4vw;
+					padding-top: 2vw;
+				}
+				p {
+					font-size: 3vw;
+				}
 
 				.shelter-description {
 					padding: 0 2.5em !important;
@@ -63,12 +70,16 @@ page-shelter {
 					}
 				}
 
-				h3 {
-					font-size: 4vw;
-					padding-top: 2vw;
-				}
-				p {
-					font-size: 3vw;
+				.shelter-comments {
+					ion-avatar {
+						img {
+							height: 45px;
+							width: 45px;
+							box-shadow: 0 0 0 0.12em map_get($colors, secondary);
+							padding: 0.1em;
+							border-radius: 100%;
+						}
+					}
 				}
 
 			}
