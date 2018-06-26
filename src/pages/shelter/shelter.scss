@@ -51,7 +51,16 @@ page-shelter {
 			}
 
 			ion-card-content {
-				margin-top: 18vw;
+				margin-top: 15vw;
+
+				.toolbar-options {
+					h2 {
+						span.active {
+							border-bottom: 0.2em solid map_get($colors, secondary) !important;
+						}
+					}
+				}
+
 				h3 {
 					font-size: 4vw;
 					padding-top: 2vw;
@@ -68,6 +77,15 @@ page-shelter {
 						height: 6em;
 						margin-top: 1em;
 					}
+				}
+
+				.adoption-description {
+					padding: 0 2.5em !important;
+					margin-top: 10vh;
+				}
+
+				.lets-go-button {
+					margin-top: 5vh;
 				}
 
 				.shelter-comments {

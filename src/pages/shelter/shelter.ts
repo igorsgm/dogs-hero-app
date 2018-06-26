@@ -4,6 +4,7 @@ import {Storage} from "@ionic/storage";
 import {RestProvider} from "../../providers/rest/rest";
 import {HttpClient} from "@angular/common/http";
 import {ShelterReviewPage} from "./shelter-review/shelter-review";
+import * as $ from 'jquery';
 
 @IonicPage()
 @Component({
@@ -31,7 +32,29 @@ export class ShelterPage {
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad ShelterPage');
+
+		this.treatTabsClicks();
 	}
+
+	/**
+	 * Method to handle the display of ADOPTION and ABOUT tabs
+	 */
+	private treatTabsClicks() {
+		$(document).on('click', '#adoption-option', function () {
+			$('#about-option span').removeClass('active');
+			$('#adoption-option span').addClass('active');
+			$('#about-tab').hide();
+			$('#adoption-tab').show();
+		});
+
+		$(document).on('click', '#about-option', function () {
+			$('#adoption-option span').removeClass('active');
+			$('#about-option span').addClass('active');
+			$('#adoption-tab').hide();
+			$('#about-tab').show();
+		});
+	}
+
 
 	getShelterDetails(idShelter) {
 		if (idShelter !== null) {
@@ -74,6 +97,10 @@ export class ShelterPage {
 
 		let modal = this.modalCtrl.create(ShelterReviewPage, reviewPageParams);
 		modal.present({animate: false});
+	}
+
+	openAdoptionPage() {
+		this.navCtrl.push('AdoptionPage');
 	}
 
 }

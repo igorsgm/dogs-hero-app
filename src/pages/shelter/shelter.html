@@ -23,37 +23,58 @@
 					</ion-col>
 				</ion-row>
 			</ion-grid>
-		
 		</ion-card-header>
 		
 		<ion-card-content>
-			<div class="shelter-description">
-				<p *ngIf="shelter" text-justify>{{shelter.about_us}}</p>
-				<ion-grid>
-					<ion-row justify-content-center>
-						<ion-img class="gallery" src="/assets/imgs/shelter/galleryimg.png"></ion-img>
-					</ion-row>
+			
+			<ion-row justify-content-center class="toolbar-options" margin-vertical>
+				<h2 id="about-option" text-uppercase ion-text text-center class="font-semi-bold" col-5 margin-right color="gray">
+					<span class="active">ABOUT</span>
+				</h2>
+				<h2 id="adoption-option" text-uppercase ion-text text-center class="font-semi-bold" col-5 margin-left color="gray">
+					<span>ADOPTION</span>
+				</h2>
+			</ion-row>
+			
+			<div id="about-tab">
+				<div class="shelter-description">
+					<p *ngIf="shelter" text-justify>{{shelter.about_us}}</p>
+					<ion-grid>
+						<ion-row justify-content-center>
+							<ion-img class="gallery" src="/assets/imgs/shelter/galleryimg.png"></ion-img>
+						</ion-row>
+						
+						<ion-row justify-content-center>
+							<button ion-button small block col-5 color="secondary" margin-right text-uppercase>Contact</button>
+							<button ion-button small block col-5 color="secondary" margin-left text-uppercase (click)="showReviewModal()">Review</button>
+						</ion-row>
+					</ion-grid>
+				</div>
+				
+				<div class="shelter-comments" padding>
+					<h2 text-uppercase class="font-semi-bold" ion-text color="gray">COMMENTS</h2>
 					
-					<ion-row justify-content-center>
-						<button ion-button small block col-5 color="secondary" margin-right text-uppercase>Contact</button>
-						<button ion-button small block col-5 color="secondary" margin-left text-uppercase (click)="showReviewModal()">Review</button>
-					</ion-row>
-				</ion-grid>
+					<div *ngIf="reviews">
+						<ion-item *ngFor="let review of reviews">
+							<ion-avatar item-start>
+								<img src="http://static.tumblr.com/ee8143344452820a1fc1583ca003fb08/hsdjdwy/KsLnspwyp/tumblr_static_3aonjogcoxs0gckkw04004wcw.jpg">
+							</ion-avatar>
+							<h3 class="font-semi-bold" ion-text color="gray">{{review.name}}</h3>
+							<p>{{review.review.review}}</p>
+						</ion-item>
+					</div>
+				</div>
 			</div>
 			
-			<div class="shelter-comments" padding>
-				<h2 text-uppercase class="font-semi-bold" ion-text color="gray">COMMENTS</h2>
-				
-				<div *ngIf="reviews">
-					<ion-item *ngFor="let review of reviews">
-						<ion-avatar item-start>
-							<img src="http://static.tumblr.com/ee8143344452820a1fc1583ca003fb08/hsdjdwy/KsLnspwyp/tumblr_static_3aonjogcoxs0gckkw04004wcw.jpg">
-						</ion-avatar>
-						<h3 class="font-semi-bold" ion-text color="gray">{{review.name}}</h3>
-						<p>{{review.review.review}}</p>
-					</ion-item>
+			<div id="adoption-tab" style="display: none;">
+				<div class="adoption-description">
+					<p text-justify>Welcome to our adoption profiles!</p>
+					<p text-justify>It's very simple: You match the pet you want to take fome and we'll get in touch with you!</p>
 				</div>
-			
+				
+				<ion-row justify-content-center class="lets-go-button">
+					<button ion-button block col-6 class="font-semi-bold" color="secondary" text-uppercase (click)="openAdoptionPage()">Let's go!</button>
+				</ion-row>
 			</div>
 		</ion-card-content>
 	
