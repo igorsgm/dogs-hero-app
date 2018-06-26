@@ -8,6 +8,38 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content class="swipe-bg" no-bounce>
+	
+	<div class="swipe-container">
+		<div class="h-full wrapper-sm">
+			<div class="card-stack" swing-stack #cardStack [stackConfig]="stackConfig" (throwoutleft)="disliked(c)" (throwoutright)="liked(c)">
+				<div class="card-item" #card [style.zIndex]="-1 * i" swing-card
+				     *ngFor="let c of cards; trackBy: trackByFn; let i = index">
+					<div [style.backgroundImage]="'url(' + c.dog_image_url + ')'" class="div-img dog-div h-full r-3x"></div>
+					
+					<div class="card-caption" (click)="openProfile(false)">
+						<div class="card-text pull-left">
+							<h1 class="font-bold">{{c.name}}, {{c.age}}</h1>
+							<h4>{{c.shelter_name}}</h4>
+						</div>
+					</div>
+					
+					<div class="stamp stamp-like">Like</div>
+					<div class="stamp stamp-nope">Nope</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="bottom-actions" horizontal layout center around-justified>
+			<button ion-button color="white" class="button-revert" (click)="getMoreCards()">
+				<ion-icon name="md-refresh"></ion-icon>
+			</button>
+			<button ion-button color="white" class="button-dislike" (click)="disliked()">
+				<ion-icon name="md-close"></ion-icon>
+			</button>
+			<button ion-button color="white" class="button-like" (click)="liked()">
+				<ion-icon name="md-heart"></ion-icon>
+			</button>
+		</div>
+	</div>
 </ion-content>

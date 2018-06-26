@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {IonicPageModule} from 'ionic-angular';
 import {AdoptionPage} from './adoption';
+import {SwingModule} from "angular2-swing";
 
 @NgModule({
 	declarations: [
@@ -8,6 +9,7 @@ import {AdoptionPage} from './adoption';
 	],
 	imports: [
 		IonicPageModule.forChild(AdoptionPage),
+		SwingModule
 	],
 })
 export class AdoptionPageModule {

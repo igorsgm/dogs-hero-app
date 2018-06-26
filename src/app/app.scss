@@ -33,6 +33,20 @@ ion-grid {
 }
 
 /**
+ * IMAGES
+ */
+
+.div-img {
+	background-position: center center;
+	background-color: transparent;
+	background-size: cover;
+	&.img-square {
+		height: 0px;
+		padding-bottom: 100%;
+	}
+}
+
+/**
  * ALERTS
  */
 
