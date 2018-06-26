@@ -17,6 +17,8 @@ import {AuthProvider} from '../providers/auth/auth';
 import {MapPage} from "../pages/map/map";
 import {Geolocation} from "@ionic-native/geolocation";
 import {UtilsProvider} from '../providers/utils/utils';
+import {ShelterReviewPage} from "../pages/shelter/shelter-review/shelter-review";
+import {Ionic2RatingModule} from "ionic2-rating";
 
 @NgModule({
 	declarations: [
@@ -24,11 +26,13 @@ import {UtilsProvider} from '../providers/utils/utils';
 		LoginPage,
 		MapPage,
 		DashboardPage,
+		ShelterReviewPage,
 	],
 	imports: [
 		BrowserModule,
 		HttpClientModule,
 		IonicModule.forRoot(MyApp),
+		Ionic2RatingModule,
 		IonicStorageModule.forRoot({
 			driverOrder: ['localstorage']
 		}),
@@ -39,6 +43,7 @@ import {UtilsProvider} from '../providers/utils/utils';
 		LoginPage,
 		MapPage,
 		DashboardPage,
+		ShelterReviewPage,
 	],
 	providers: [
 		StatusBar,

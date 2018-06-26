@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams, ViewController} from 'ionic-angular';
 import {Storage} from "@ionic/storage";
 import {RestProvider} from "../../providers/rest/rest";
 import {HttpClient} from "@angular/common/http";
+import {ShelterReviewPage} from "./shelter-review/shelter-review";
 
 @IonicPage()
 @Component({
@@ -16,7 +17,7 @@ export class ShelterPage {
 	reviews: Array<any> = [];
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, public localStorage: Storage, public viewCtrl: ViewController,
-				public restProvider: RestProvider, public http: HttpClient, public alertCtrl: AlertController) {
+				public restProvider: RestProvider, public http: HttpClient, public modalCtrl: ModalController) {
 
 		this.localStorage.get('user').then(user => {
 			this.user = user;
@@ -65,50 +66,14 @@ export class ShelterPage {
 		}
 	}
 
-	showReviewAlert() {
-		let alert = this.alertCtrl.create({
-			title: 'Rate this Shelter!',
-			inputs: [
-				{
-					name: 'review',
-					placeholder: 'Write a review'
-				}
-			],
-			buttons: [
-				{
-					text: 'Rate it!',
-					handler: (data) => {
-						this.setRating(data.review);
-					}
-				}
-			]
-		});
-		alert.present();
-	}
+	showReviewModal() {
+		let reviewPageParams = {
+			shelter_id: this.shelter.shelter_id,
+			user_id: this.user.id
+		};
 
-	setRating(review) {
-		if (review !== '' && review !== null) {
-			let body = {
-				shelter_id: this.shelter.shelter_id,
-				user_id: this.user.id,
-				rating: '5',
-				review: review
-			};
-
-			this.http.post(this.restProvider.getUrlApi() + '/shelter/setRating', body, this.restProvider.getHeadersUrlEncoded()).toPromise()
-				.then((data: any) => {
-					console.log(data);
-
-					this.navCtrl.push('ShelterPage', {
-						shelter_id: this.shelter.shelter_id
-					}, {animate: false}).then(() => {
-						this.navCtrl.remove(this.viewCtrl.index);
-					});
-
-				}).catch((error) => {
-				console.log(error);
-			});
-		}
+		let modal = this.modalCtrl.create(ShelterReviewPage, reviewPageParams);
+		modal.present({animate: false});
 	}
 
 }
