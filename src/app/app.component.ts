@@ -9,7 +9,7 @@ import {MapPage} from "../pages/map/map";
 import {DashboardPage} from "../pages/dashboard/dashboard";
 
 @Component({
-	templateUrl: 'app.html'
+	templateUrl: 'app.html',
 })
 export class MyApp {
 	@ViewChild(Nav) nav: Nav;

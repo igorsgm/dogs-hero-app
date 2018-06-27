@@ -31,7 +31,10 @@ import {Ionic2RatingModule} from "ionic2-rating";
 	imports: [
 		BrowserModule,
 		HttpClientModule,
-		IonicModule.forRoot(MyApp),
+		IonicModule.forRoot(MyApp, {
+			iconMode: 'ios',
+			mode: 'ios'
+		}),
 		Ionic2RatingModule,
 		IonicStorageModule.forRoot({
 			driverOrder: ['localstorage']
