@@ -27,7 +27,7 @@
 						<div data-ring="" class="ring">
 							<div class="ring-progress" data-ring-progress=""></div>
 						</div>
-						<ion-img src="/assets/imgs/dashboard/dog_avatar.png" width="85" height="85"></ion-img>
+						<ion-img src="assets/imgs/dashboard/dog_avatar.png" width="85" height="85"></ion-img>
 					</div>
 					<div>
 						<div>
@@ -48,7 +48,7 @@
 					<h6 text-uppercase class="font-semi-bold" ion-text color="gray">BARKLEY PTS</h6>
 					<div padding-horizontal>
 						<div>
-							<ion-img src="/assets/imgs/icons/icon_coin.png" width="27" height="27"></ion-img>
+							<ion-img src="assets/imgs/icons/icon_coin.png" width="27" height="27"></ion-img>
 							<h5 *ngIf="user" text-center text-uppercase ion-text color="gray" class="inline-icon-number font-bold">{{user.points}}</h5>
 						</div>
 						<div class="link-bellow-icon">
@@ -62,11 +62,11 @@
 					<h6 text-uppercase class="font-semi-bold" ion-text color="gray">MISSIONS</h6>
 					<div padding-horizontal>
 						<ion-col col-3>
-							<ion-img src="/assets/imgs/icons/icon_done.png" width="27" height="27"></ion-img>
+							<ion-img src="assets/imgs/icons/icon_done.png" width="27" height="27"></ion-img>
 							<h5 *ngIf="completedMissions" text-center text-uppercase ion-text color="gray" class="inline-icon-number font-bold">{{completedMissions.length}}</h5>
 						</ion-col>
 						<ion-col col-3 margin-left>
-							<ion-img src="/assets/imgs/icons/icon_clock.png" width="27" height="27"></ion-img>
+							<ion-img src="assets/imgs/icons/icon_clock.png" width="27" height="27"></ion-img>
 							<h5 *ngIf="pendingMissions" text-center text-uppercase ion-text color="gray" class="inline-icon-number font-bold">{{pendingMissions.length}}</h5>
 						</ion-col>
 						<div class="link-bellow-icon">
@@ -101,7 +101,7 @@
 								</div>
 							</ion-col>
 							<ion-col col-4>
-								<img class="icon-mission" src="/assets/imgs/icons/icon_clock.png"/>
+								<img class="icon-mission" src="assets/imgs/icons/icon_clock.png"/>
 								<p text-center text-uppercase class="inline-icon-number font-semi-bold">
 									<span ion-text color="{{pendingMission.mission.expires <= 1 ? 'danger' : ''}}">{{pendingMission.mission.expires == 1 ? (pendingMission.mission.expires  + " DAY") : (pendingMission.mission.expires  + " DAYS")}}</span>
 								</p>
