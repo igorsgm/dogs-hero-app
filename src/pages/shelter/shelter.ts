@@ -32,29 +32,22 @@ export class ShelterPage {
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad ShelterPage');
-
-		this.treatTabsClicks();
 	}
 
-	/**
-	 * Method to handle the display of ADOPTION and ABOUT tabs
-	 */
-	private treatTabsClicks() {
-		$(document).on('click', '#adoption-option', function () {
-			$('#about-option span').removeClass('active');
-			$('#adoption-option span').addClass('active');
-			$('#about-tab').hide();
-			$('#adoption-tab').show();
-		});
-
-		$(document).on('click', '#about-option', function () {
-			$('#adoption-option span').removeClass('active');
-			$('#about-option span').addClass('active');
-			$('#adoption-tab').hide();
-			$('#about-tab').show();
-		});
+	showAboutTab() {
+		$('#adoption-option span').removeClass('active');
+		$('#about-option span').addClass('active');
+		$('#adoption-tab').hide();
+		$('#about-tab').show();
 	}
 
+	showAdoptionTab() {
+		$('#about-option span').removeClass('active');
+		$('#adoption-option span').addClass('active');
+		$('#about-tab').hide();
+		$('#adoption-tab').show();
+
+	}
 
 	getShelterDetails(idShelter) {
 		if (idShelter !== null) {

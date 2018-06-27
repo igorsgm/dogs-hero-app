@@ -34,11 +34,6 @@ export class MapPage {
 			this.user = user;
 		});
 
-		$(document).on("click", "[data-mission-card]", function () {
-			$('.mission-card:first-child').fadeOut(400, 'swing', function () {
-				$('.mission-card:first-child').appendTo('.missions-container').hide();
-			}).fadeIn(400, 'swing');
-		});
 	}
 
 	ionViewDidLoad() {
@@ -71,6 +66,12 @@ export class MapPage {
 		}, (err) => {
 			console.log(err);
 		});
+	}
+
+	dataMissionCardClick() {
+		$('.mission-card:first-child').fadeOut(400, 'swing', function () {
+			$('.mission-card:first-child').appendTo('.missions-container').hide();
+		}).fadeIn(400, 'swing');
 	}
 
 	/**

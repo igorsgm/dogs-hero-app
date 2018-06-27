@@ -15,7 +15,7 @@
 	<div id="missions-modal" class="missions-container-wrapper" *ngIf="showMissions">
 		<!--<img id="carousel-next" src="arrow.png">-->
 		<div class="missions-container" *ngIf="showMissions">
-			<div *ngFor="let item of missions" data-mission-card="1" class="mission-card">
+			<div *ngFor="let item of missions" class="mission-card" (click)="dataMissionCardClick()">
 				<ion-card no-margin>
 					<ion-card-header text-center no-padding padding-vertical>
 						<h2 ion-text text-uppercase color="white" class="card-title font-semi-bold">{{item.mission.name}}</h2>
