@@ -1,6 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {ErrorHandler, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
+import {Ionic2RatingModule} from "ionic2-rating";
+import {ComponentsModule} from '../components/components.module';
 // Plugins added
 import {InAppBrowser} from '@ionic-native/in-app-browser';
 import {IonicStorageModule} from "@ionic/storage";
@@ -18,7 +20,6 @@ import {MapPage} from "../pages/map/map";
 import {Geolocation} from "@ionic-native/geolocation";
 import {UtilsProvider} from '../providers/utils/utils';
 import {ShelterReviewPage} from "../pages/shelter/shelter-review/shelter-review";
-import {Ionic2RatingModule} from "ionic2-rating";
 
 @NgModule({
 	declarations: [
@@ -31,6 +32,7 @@ import {Ionic2RatingModule} from "ionic2-rating";
 	imports: [
 		BrowserModule,
 		HttpClientModule,
+		ComponentsModule,
 		IonicModule.forRoot(MyApp, {
 			iconMode: 'ios',
 			mode: 'ios'

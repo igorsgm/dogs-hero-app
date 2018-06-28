@@ -1,0 +1,33 @@
+<ion-card no-padding>
+	<ion-card-header no-padding padding-horizontal>
+		<ion-grid>
+			<ion-row>
+				<ion-col col-8>
+					<div>
+						<h2 text-uppercase class="font-semi-bold" ion-text color="gray">{{mission.name}}</h2>
+					</div>
+					<div>
+						<h3 text-uppercase ion-text color="gray">{{mission.total_cost}} BONZ</h3>
+					</div>
+				</ion-col>
+				<ion-col col-4>
+					<img class="icon-mission" src="assets/imgs/icons/icon_clock.png"/>
+					<p text-center text-uppercase class="inline-icon-number font-semi-bold">
+						<span ion-text color="{{mission.expires <= 1 ? 'danger' : ''}}">{{mission.expires == 1 ? (mission.expires  + " DAY") : (mission.expires  + " DAYS")}}</span>
+					</p>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-card-header>
+	
+	<ion-card-content no-padding padding-horizontal margin-horizontal>
+		<div>
+			<p>{{mission.description}}</p>
+		</div>
+		<ion-item no-padding>
+			<button ion-button clear float-right text-uppercase color="primary" class="font-semi-bold">
+				<span (click)="openMissionPage(mission.id)">View</span>
+			</button>
+		</ion-item>
+	</ion-card-content>
+</ion-card>
