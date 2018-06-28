@@ -69,8 +69,8 @@ export class MapPage {
 	}
 
 	dataMissionCardClick() {
-		$('.mission-card:first-child').fadeOut(400, 'swing', function () {
-			$('.mission-card:first-child').appendTo('.missions-container').hide();
+		$('mission-modal:first-child').fadeOut(400, 'swing', function () {
+			$('mission-modal:first-child').appendTo('.missions-container').hide();
 		}).fadeIn(400, 'swing');
 	}
 
@@ -132,6 +132,8 @@ export class MapPage {
 
 		if (userLoad.user_type === "guardian") {
 			this.getMarkerShelterClickEvent(markerData, userLoad);
+		} else {
+			let marker = new google.maps.Marker(markerData);
 		}
 
 		// markerArray[pinType + userLoad.id] = marker;
@@ -155,14 +157,13 @@ export class MapPage {
 				about: "Lorem cillum dolore eu fugiat nulla pariatur.",
 				address: null,
 				icon: icon,
-				cover_url: "pin_dog.png",
 				user_type: "hero",
 				id: "0",
 				lat: parseFloat(lat) + this.utils.getRandomNumber(-5, 5) / 1000,
 				lng: parseFloat(lng) + this.utils.getRandomNumber(-5, 5) / 1000,
 				name: "Rafael Oliveira",
 				shelter_id: "0",
-				pushpin_type: "bot"
+				marker_type: "bot"
 			};
 
 			this.appendMarker(userLoad, "bot", map);
@@ -177,13 +178,15 @@ export class MapPage {
 	 */
 	public getMarkerShelterClickEvent(markerObj, userLoad) {
 
-		this.http.post(this.restProvider.getUrlApi() + '/mission/getMissions', {
+		let body = {
 			shelter_id: userLoad.shelter_id,
 			hero_id: userLoad.id,
 			mission_id: null
-		}, this.restProvider.getHeadersUrlEncoded())
-			.toPromise()
+		};
+
+		this.http.post(this.restProvider.getUrlApi() + '/mission/getMissions', body, this.restProvider.getHeadersUrlEncoded()).toPromise()
 			.then((data: any) => {
+
 				Object.keys(data.missions).forEach((key, index) => {
 					console.log(data);
 					markerObj.missions.push(data.missions[key]);
@@ -214,18 +217,6 @@ export class MapPage {
 		this.missionsCount = 0;
 		this.missions = [];
 		this.shelter = null;
-	}
-
-	public openMission(mission, shelter) {
-		this.navCtrl.push('MissionPage', {
-			mission_id: mission
-		});
-	}
-
-	public openShelter(idShelter) {
-		this.navCtrl.push('ShelterPage', {
-			shelter_id: idShelter
-		});
 	}
 
 }

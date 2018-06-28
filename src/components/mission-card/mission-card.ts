@@ -8,10 +8,8 @@ import {NavController} from "ionic-angular";
 export class MissionCardComponent {
 	@Input() mission: any;
 
-	text: string;
-
 	constructor(public navCtrl: NavController) {
-		console.log('Hello MissionCardComponent Component');
+		console.log('Hello MissionCardComponent');
 	}
 
 	public openMissionPage(idMission) {

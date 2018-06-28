@@ -15,56 +15,7 @@
 	<div id="missions-modal" class="missions-container-wrapper" *ngIf="showMissions">
 		<!--<img id="carousel-next" src="arrow.png">-->
 		<div class="missions-container" *ngIf="showMissions">
-			<div *ngFor="let item of missions" class="mission-card" (click)="dataMissionCardClick()">
-				<ion-card no-margin>
-					<ion-card-header text-center no-padding padding-vertical>
-						<h2 ion-text text-uppercase color="white" class="card-title font-semi-bold">{{item.mission.name}}</h2>
-						<p ion-text text-uppercase color="white" class="card-subtitle font-light">{{shelter.name}}</p>
-						
-						
-						<ion-grid>
-							<ion-row justify-content-center>
-								
-								<ion-col col-3 class="mission-icons" padding-horizontal>
-									<img class="icon-mission" src="assets/imgs/icons/icon_coin.png"/>
-									<p ion-text text-wrap text-center text-uppercase color="gray" class="inline-icon-number font-semi-bold">{{item.mission.total_cost}} XP</p>
-								</ion-col>
-								
-								<ion-col col-6 class="shelter" (click)="openShelter(shelter.shelter_id)">
-									<img class="logo-shelter" src="assets/imgs/mission/logo_shelter.png"/>
-									<p ion-text text-center text-uppercase color="secondary" class="font-bold">View page</p>
-								</ion-col>
-								
-								<ion-col col-3 class="mission-icons" padding-horizontal>
-									<img class="icon-mission" src="assets/imgs/icons/icon_clock.png"/>
-									<p ion-text text-wrap text-center text-uppercase color="gray" class="inline-icon-number font-semi-bold">Expire in {{item.mission.expires}} days</p>
-								</ion-col>
-							</ion-row>
-						</ion-grid>
-					
-					</ion-card-header>
-					
-					<ion-card-content>
-						<p text-justify>{{item.mission.description}}</p>
-						
-						<h3 ion-text text-uppercase color="gray" class="font-bold">We need:</h3>
-						
-						<ion-grid>
-							<ion-row>
-								<p *ngFor="let missionItem of item.mission_items" text-justify text-left>
-									{{missionItem.name}}
-								</p>
-							</ion-row>
-							
-							<ion-row justify-content-center>
-								<button ion-button small block col-5 color="secondary" text-uppercase (click)="openMission(item.mission.id)">Details</button>
-							</ion-row>
-						</ion-grid>
-					
-					</ion-card-content>
-				
-				</ion-card>
-			</div>
+			<mission-modal *ngFor="let item of missions" [mission]="item.mission" [shelter]="shelter" [missionItems]="item.mission_items" (click)="dataMissionCardClick()"></mission-modal>
 		</div>
 		<div class="overlay" (click)="closeMissions()"></div>
 	</div>
