@@ -5,6 +5,8 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 export class RestProvider {
 
 	private apiUrl: string = 'http://localhost:8888/barkley_backend/index.php';
+	// private apiUrl: string = 'https://savebarkleyapp.azurewebsites.net/index.php';
+	// private apiUrl: string = 'http://tridiacriacao.com/clientes/igor/index.php';
 
 	private headersJson = {
 		headers: new HttpHeaders({

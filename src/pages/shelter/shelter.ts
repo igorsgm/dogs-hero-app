@@ -93,7 +93,9 @@ export class ShelterPage {
 	}
 
 	openAdoptionPage() {
-		this.navCtrl.push('AdoptionPage');
+		this.navCtrl.push('AdoptionPage', {
+			shelter_id: this.shelter.shelter_id
+		});
 	}
 
 }

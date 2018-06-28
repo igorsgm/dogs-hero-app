@@ -2,7 +2,7 @@ page-login {
 	//background-color: map_get($colors, light);
 
 	.auth-page {
-		background: url("../../assets/imgs/login/login_bg.png") no-repeat center center fixed;
+		background: url("../assets/imgs/login/login_bg.png") no-repeat center center fixed;
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
@@ -13,7 +13,7 @@ page-login {
 		width: 50%;
 		height: 130px;
 		margin: 7em auto 0;
-		background: url("../../assets/imgs/login/logo_login.png") no-repeat;
+		background: url("../assets/imgs/login/logo_login.png") no-repeat;
 		background-size: 100%;
 	}
 

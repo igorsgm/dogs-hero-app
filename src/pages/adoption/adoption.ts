@@ -4,6 +4,9 @@ import 'rxjs/Rx';
 import * as _ from 'lodash';
 
 import {Direction, StackConfig, SwingCardComponent, SwingStackComponent} from 'angular2-swing';
+import {Storage} from "@ionic/storage";
+import {RestProvider} from "../../providers/rest/rest";
+import {HttpClient} from "@angular/common/http";
 
 
 @IonicPage()
@@ -15,11 +18,20 @@ export class AdoptionPage {
 	@ViewChild('cardStack') swingStack: SwingStackComponent;
 	@ViewChildren('card') swingCards: QueryList<SwingCardComponent>;
 
+	user: any;
+	shelter_id: any;
 	cards: any[];
 	stackConfig: StackConfig;
-	users: any[];
+	animals: any[];
 
-	constructor(public navCtrl: NavController, public modalCtrl: ModalController, public navParams: NavParams) {
+	constructor(public navCtrl: NavController, public modalCtrl: ModalController, public navParams: NavParams, public localStorage: Storage, public restProvider: RestProvider, public http: HttpClient) {
+
+		this.shelter_id = this.navParams.data.shelter_id;
+
+		this.localStorage.get('user').then(user => {
+			this.user = user;
+		});
+
 		this.stackConfig = {
 			// Default setting only allows UP, LEFT and RIGHT so you can override this as below
 			allowedDirections: [
@@ -44,7 +56,10 @@ export class AdoptionPage {
 
 	ngAfterViewInit() {
 		this.cards = [];
-		this.users = [
+
+		// this.getAllShelterAnimals();
+
+		this.animals = [
 			{
 				id: 1,
 				name: 'Spike',
@@ -94,6 +109,16 @@ export class AdoptionPage {
 		this.addNewCard();
 	}
 
+	getAllShelterAnimals() {
+		this.http.get(this.restProvider.getUrlApi() + '/animal/getAllShelterAnimals?user_id=' + this.user.id + '&shelter_id=' + this.shelter_id, this.restProvider.getHeadersJson()).toPromise()
+			.then((data: any) => {
+				console.log(data);
+
+			}).catch((error) => {
+			console.log(error);
+		});
+	}
+
 	// Called whenever we drag an element
 	onItemMove(element, x, y, r) {
 		let nope = element.querySelector('.stamp-nope');
@@ -115,7 +140,7 @@ export class AdoptionPage {
 
 	// Add new cards to our array
 	addNewCard() {
-		let difference = _.difference(this.users, this.cards);
+		let difference = _.difference(this.animals, this.cards);
 		let randomIndex = Math.floor(Math.random() * (difference.length));
 
 		this.cards.push(difference[randomIndex]);
@@ -130,10 +155,19 @@ export class AdoptionPage {
 		console.log('You disliked: ' + removedCard.name);
 	}
 
-	liked() {
+	liked(matchAnimalId) {
 		this.addNewCard();
 		let removedCard = this.cards.shift();
 		this.checkMatching(removedCard);
+
+
+		// this.http.get(this.restProvider.getUrlApi() + '/animal/matchAnimal?match_animal_id=' + matchAnimalId, this.restProvider.getHeadersJson()).toPromise()
+		// 	.then((data: any) => {
+		// 		console.log(data);
+		//
+		// 	}).catch((error) => {
+		// 	console.log(error);
+		// });
 
 		console.log('You liked: ' + removedCard.name);
 	}
