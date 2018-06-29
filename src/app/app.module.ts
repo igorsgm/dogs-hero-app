@@ -22,6 +22,7 @@ import {UtilsProvider} from '../providers/utils/utils';
 import {ShelterReviewPage} from "../pages/shelter/shelter-review/shelter-review";
 import {MissionProvider} from '../providers/mission/mission';
 import {AvatarProvider} from '../providers/avatar/avatar';
+import { AnimalProvider } from '../providers/animal/animal';
 
 @NgModule({
 	declarations: [
@@ -63,6 +64,7 @@ import {AvatarProvider} from '../providers/avatar/avatar';
 		Geolocation,
 		UtilsProvider,
 		AvatarProvider,
+    AnimalProvider,
 	]
 })
 export class AppModule {

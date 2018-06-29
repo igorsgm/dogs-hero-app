@@ -7,6 +7,7 @@ import {Direction, StackConfig, SwingCardComponent, SwingStackComponent} from 'a
 import {Storage} from "@ionic/storage";
 import {RestProvider} from "../../providers/rest/rest";
 import {HttpClient} from "@angular/common/http";
+import {AnimalProvider} from "../../providers/animal/animal";
 
 
 @IonicPage()
@@ -20,11 +21,11 @@ export class AdoptionPage {
 
 	user: any;
 	shelter_id: any;
-	cards: any[];
+	cards: any[] = [];
+	animals: any[] = [];
 	stackConfig: StackConfig;
-	animals: any[];
 
-	constructor(public navCtrl: NavController, public modalCtrl: ModalController, public navParams: NavParams, public localStorage: Storage, public restProvider: RestProvider, public http: HttpClient) {
+	constructor(public navCtrl: NavController, public modalCtrl: ModalController, public navParams: NavParams, public localStorage: Storage, public restProvider: RestProvider, public http: HttpClient, public animalProvider: AnimalProvider) {
 
 		this.shelter_id = this.navParams.data.shelter_id;
 
@@ -55,71 +56,43 @@ export class AdoptionPage {
 	}
 
 	ngAfterViewInit() {
-		this.cards = [];
-
-		// this.getAllShelterAnimals();
-
-		this.animals = [
-			{
-				id: 1,
-				name: 'Spike',
-				age: 3,
-				shelter_name: 'Doggie Harmony',
-				dog_image_url: 'assets/imgs/dogs-adoption/spike.png'
-
-			},
-			{
-				id: 2,
-				name: 'Kobe',
-				age: 2,
-				shelter_name: 'LifeLine Animal Project',
-				dog_image_url: 'assets/imgs/dogs-adoption/kobe.png'
-			},
-			{
-				id: 3,
-				name: 'Dobby',
-				age: 1,
-				shelter_name: 'Happy Tails Rescue',
-				dog_image_url: 'assets/imgs/dogs-adoption/dobby.png'
-			},
-			{
-				id: 4,
-				name: 'Yoda',
-				age: 4,
-				shelter_name: 'Dekalb County Animal Services',
-				dog_image_url: 'assets/imgs/dogs-adoption/yoda.png'
-			},
-			{
-				id: 5,
-				name: 'Ziggy',
-				age: 5,
-				shelter_name: 'Animal Action Rescue',
-				dog_image_url: 'assets/imgs/dogs-adoption/ziggy.png'
-			},
-			{
-				id: 6,
-				name: 'Billy',
-				age: 7,
-				shelter_name: 'Animal Action Rescue',
-				dog_image_url: 'assets/imgs/dogs-adoption/billy.png'
-			}
-		];
-
+		this.loadAnimals();
 		this.addNewCard();
+
 		this.addNewCard();
 	}
 
-	getAllShelterAnimals() {
-		this.http.get(this.restProvider.getUrlApi() + '/animal/getAllShelterAnimals?user_id=' + this.user.id + '&shelter_id=' + this.shelter_id, this.restProvider.getHeadersJson()).toPromise()
-			.then((data: any) => {
-				console.log(data);
+	loadAnimals() {
 
-			}).catch((error) => {
-			console.log(error);
+		let images = {
+			1: 'assets/imgs/dogs-adoption/spike.png',
+			2: 'assets/imgs/dogs-adoption/kobe.png',
+			3: 'assets/imgs/dogs-adoption/dobby.png',
+			4: 'assets/imgs/dogs-adoption/yoda.png',
+			5: 'assets/imgs/dogs-adoption/ziggy.png',
+			6: 'assets/imgs/dogs-adoption/billy.png'
+		};
+
+		this.animalProvider.getAllShelterAnimals(this.user.id, this.shelter_id).then((data: any) => {
+			Object.keys(data.stuff).forEach((key, index) => {
+				data.stuff[key].dog_image_url = images[key];
+				data.stuff[key].id = data.stuff[key].animal_id;
+				this.animals.push(data.stuff[key]);
+			});
+
+			this.addNewCard();
+			this.addNewCard();
 		});
 	}
 
-	// Called whenever we drag an element
+	/**
+	 * Called whenever we drag an element
+	 *
+	 * @param element
+	 * @param x
+	 * @param y
+	 * @param r
+	 */
 	onItemMove(element, x, y, r) {
 		let nope = element.querySelector('.stamp-nope');
 		let like = element.querySelector('.stamp-like');
@@ -134,42 +107,39 @@ export class AdoptionPage {
 		element.style['transform'] = `translate3d(0, 0, 0) translate(${x}px, ${y}px) rotate(${r}deg)`;
 
 		// Zoom effect for the cards underneath
-		let cardBehind = this.swingCards.toArray()[1].getNativeElement();
-		cardBehind.style['transform'] = `scale(${0.94 + 0.06 * caculatedValue}, ${0.94 + 0.06 * caculatedValue})`;
+		if (!_.isEmpty(this.swingCards.toArray()[1])) {
+			let cardBehind = this.swingCards.toArray()[1].getNativeElement();
+			cardBehind.style['transform'] = `scale(${0.94 + 0.06 * caculatedValue}, ${0.94 + 0.06 * caculatedValue})`;
+		}
 	}
 
-	// Add new cards to our array
+	/**
+	 * Add new cards to our array
+	 */
 	addNewCard() {
 		let difference = _.difference(this.animals, this.cards);
-		let randomIndex = Math.floor(Math.random() * (difference.length));
 
-		this.cards.push(difference[randomIndex]);
+		if (!_.isEmpty(difference)) {
+			let randomIndex = Math.floor(Math.random() * (difference.length));
+			this.cards.push(difference[randomIndex]);
 
-		console.info('CURRENT STACK:', this.cards.map(c => c.name));
+			console.info('CURRENT STACK:', this.cards.map(c => c.animal_name));
+		}
 	}
 
 	disliked() {
 		this.addNewCard();
 		let removedCard = this.cards.shift();
 
-		console.log('You disliked: ' + removedCard.name);
+		console.log('You disliked: ' + removedCard.animal_name);
 	}
 
-	liked(matchAnimalId) {
+	liked() {
 		this.addNewCard();
 		let removedCard = this.cards.shift();
 		this.checkMatching(removedCard);
 
-
-		// this.http.get(this.restProvider.getUrlApi() + '/animal/matchAnimal?match_animal_id=' + matchAnimalId, this.restProvider.getHeadersJson()).toPromise()
-		// 	.then((data: any) => {
-		// 		console.log(data);
-		//
-		// 	}).catch((error) => {
-		// 	console.log(error);
-		// });
-
-		console.log('You liked: ' + removedCard.name);
+		console.log('You liked: ' + removedCard.animal_name);
 	}
 
 	checkMatching(card) {
@@ -203,7 +173,7 @@ export class AdoptionPage {
 	}
 
 	trackByFn(index, item) {
-		return item.id;
+		return item.animal_id;
 	}
 
 }
