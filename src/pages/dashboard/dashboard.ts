@@ -3,6 +3,8 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Storage} from "@ionic/storage";
 import {HttpClient} from "@angular/common/http";
 import {RestProvider} from "../../providers/rest/rest";
+import {MissionProvider} from "../../providers/mission/mission";
+import {AvatarProvider} from "../../providers/avatar/avatar";
 import * as $ from 'jquery'
 
 @IonicPage()
@@ -19,10 +21,10 @@ export class DashboardPage {
 	level: any;
 	ringPercent: any;
 	completedMissions: any;
-	pendingMissions: any;
+	pendingMissions: any = [];
 	dynamicColor: any;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, public localStorage: Storage, public restProvider: RestProvider, public http: HttpClient) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, public localStorage: Storage, public restProvider: RestProvider, public http: HttpClient, public missionProvider: MissionProvider, public avatarProvider: AvatarProvider) {
 		this.localStorage.get('user').then(user => {
 			this.user = user;
 			this.dynamicColor = 'red';
@@ -37,45 +39,26 @@ export class DashboardPage {
 	}
 
 	loadAvatar() {
-		this.http.get(this.restProvider.getUrlApi() + '/avatar/getAvatar?id=' + this.user.id + '&get_type=av_user_id', this.restProvider.getHeadersJson()).toPromise()
-			.then((data: any) => {
-				console.log(data);
+		this.avatarProvider.getAvatarByIdUser(this.user.id).then((data: any) => {
+			this.avatar = data.avatar;
+			this.breed = data.breed;
+			this.level = data.level;
+			this.abilities = data.abilities;
+			this.ringPercent = this.getLevelRingPercent();
 
-				this.avatar = data.avatar;
-				this.breed = data.breed;
-				this.level = data.level;
-				this.abilities = data.abilities;
-				this.ringPercent = this.getLevelRingPercent();
-
-				this.rotateRing(this.ringPercent);
-			}).catch((error) => {
-			console.log(error);
+			this.rotateRing(this.ringPercent);
 		});
 	}
 
 	loadPendingMissions() {
-		let body = {
-			hero_id: this.user.id
-		};
-
-		this.http.post(this.restProvider.getUrlApi() + '/mission/getPendingMissions', body, this.restProvider.getHeadersJson()).toPromise()
-			.then((missions) => {
-				this.pendingMissions = missions;
-			}).catch((error) => {
-			console.log(error);
+		this.missionProvider.getPendingMissions(this.user.id).then((pendingMissions) => {
+			this.pendingMissions = pendingMissions;
 		});
 	}
 
 	loadCompletedMissions() {
-		let body = {
-			hero_id: this.user.id
-		};
-
-		this.http.post(this.restProvider.getUrlApi() + '/mission/getCompletedMissions', body, this.restProvider.getHeadersUrlEncoded()).toPromise()
-			.then((missions) => {
-				this.completedMissions = missions;
-			}).catch((error) => {
-			console.log(error);
+		this.missionProvider.getCompletedMissions(this.user.id).then((completedMissions) => {
+			this.completedMissions = completedMissions;
 		});
 	}
 
@@ -99,7 +82,7 @@ export class DashboardPage {
 			percent = percent - 66;
 		}
 
-		var degrees = -90 + (90 / 33) * percent;
+		let degrees = -90 + (90 / 33) * percent;
 
 		$("[data-ring-progress]").attr("style", 'transform: rotate(' + degrees + 'deg)');
 	}
@@ -108,8 +91,10 @@ export class DashboardPage {
 		this.navCtrl.push('CreditPage');
 	}
 
-	public openUserPage() {
-		this.navCtrl.push('UserPage');
+	public openMissionsCompletedPage() {
+		this.navCtrl.push('MissionsCompletedPage', {
+			completedMissions: this.completedMissions
+		});
 	}
 
 	public openAvatarPage() {

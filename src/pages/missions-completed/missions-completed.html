@@ -1,0 +1,16 @@
+<ion-header>
+	<ion-navbar color="primary">
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title text-uppercase>Completed Missions</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div *ngIf="completedMissions">
+		<div *ngFor='let mission of completedMissions'>
+			<mission-card [mission]="mission" [pendingMissionCards]="false"></mission-card>
+		</div>
+	</div>
+</ion-content>

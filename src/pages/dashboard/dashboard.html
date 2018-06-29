@@ -70,7 +70,7 @@
 							<h5 *ngIf="pendingMissions" text-center text-uppercase ion-text color="gray" class="inline-icon-number font-bold">{{pendingMissions.length}}</h5>
 						</ion-col>
 						<div class="link-bellow-icon">
-							<button ion-button clear small text-uppercase color="primary" class="font-semi-bold" (click)="openUserPage()">
+							<button ion-button clear small text-uppercase color="primary" class="font-semi-bold" (click)="openMissionsCompletedPage()">
 								<span>VIEW</span>
 							</button>
 						</div>
@@ -87,7 +87,7 @@
 	
 	<div *ngIf="pendingMissions">
 		<div *ngFor='let pendingMission of pendingMissions'>
-			<mission-card [mission]="pendingMission.mission"></mission-card>
+			<mission-card [mission]="pendingMission.mission" [pendingMissionCards]="true"></mission-card>
 		</div>
 	</div>
 </ion-content>

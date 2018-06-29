@@ -20,6 +20,8 @@ import {MapPage} from "../pages/map/map";
 import {Geolocation} from "@ionic-native/geolocation";
 import {UtilsProvider} from '../providers/utils/utils';
 import {ShelterReviewPage} from "../pages/shelter/shelter-review/shelter-review";
+import {MissionProvider} from '../providers/mission/mission';
+import {AvatarProvider} from '../providers/avatar/avatar';
 
 @NgModule({
 	declarations: [
@@ -56,9 +58,11 @@ import {ShelterReviewPage} from "../pages/shelter/shelter-review/shelter-review"
 		InAppBrowser,
 		{provide: ErrorHandler, useClass: IonicErrorHandler},
 		RestProvider,
+		MissionProvider,
 		AuthProvider,
 		Geolocation,
 		UtilsProvider,
+		AvatarProvider,
 	]
 })
 export class AppModule {

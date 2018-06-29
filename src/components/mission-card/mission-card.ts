@@ -7,6 +7,7 @@ import {NavController} from "ionic-angular";
 })
 export class MissionCardComponent {
 	@Input() mission: any;
+	@Input() pendingMissionCards: boolean = true;
 
 	constructor(public navCtrl: NavController) {
 		console.log('Hello MissionCardComponent');

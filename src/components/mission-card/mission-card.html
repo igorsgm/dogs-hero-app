@@ -11,10 +11,18 @@
 					</div>
 				</ion-col>
 				<ion-col col-4>
-					<img class="icon-mission" src="assets/imgs/icons/icon_clock.png"/>
-					<p text-center text-uppercase class="inline-icon-number font-semi-bold">
-						<span ion-text color="{{mission.expires <= 1 ? 'danger' : ''}}">{{mission.expires == 1 ? (mission.expires  + " DAY") : (mission.expires  + " DAYS")}}</span>
-					</p>
+					<div *ngIf="pendingMissionCards">
+						<img class="icon-mission" src="assets/imgs/icons/icon_clock.png"/>
+						<p text-center text-uppercase class="inline-icon-number font-semi-bold">
+							<span ion-text color="{{mission.expires <= 1 ? 'danger' : ''}}">{{mission.expires == 1 ? (mission.expires  + " DAY") : (mission.expires  + " DAYS")}}</span>
+						</p>
+					</div>
+					<div *ngIf="!pendingMissionCards">
+						<img class="icon-mission" src="assets/imgs/icons/icon_done.png"/>
+						<p text-center text-uppercase class="inline-icon-number font-semi-bold">
+							<span ion-text>{{mission.completed_date}}</span>
+						</p>
+					</div>
 				</ion-col>
 			</ion-row>
 		</ion-grid>

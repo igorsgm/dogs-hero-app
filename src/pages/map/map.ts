@@ -133,7 +133,7 @@ export class MapPage {
 		if (userLoad.user_type === "guardian") {
 			this.getMarkerShelterClickEvent(markerData, userLoad);
 		} else {
-			let marker = new google.maps.Marker(markerData);
+			new google.maps.Marker(markerData);
 		}
 
 		// markerArray[pinType + userLoad.id] = marker;
