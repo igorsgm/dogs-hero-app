@@ -37,7 +37,7 @@ export class AnimalProvider {
 	 * @returns {Promise<Object>}
 	 */
 	matchAnimal(idUser, matchAnimalId) {
-		let url = this.restProvider.getUrlApi() + '/animal/matchAnimal?match_animal_id=' + matchAnimalId;
+		let url = this.restProvider.getUrlApi() + '/animal/matchAnimal?match_user_id=' + idUser + '&match_animal_id=' + matchAnimalId;
 
 		return this.http.get(url, this.restProvider.getHeadersUrlEncoded()).toPromise();
 	}

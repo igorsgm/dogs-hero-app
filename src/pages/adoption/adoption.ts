@@ -137,16 +137,15 @@ export class AdoptionPage {
 	liked() {
 		this.addNewCard();
 		let removedCard = this.cards.shift();
-		this.checkMatching(removedCard);
 
-		console.log('You liked: ' + removedCard.animal_name);
+		this.checkMatching(removedCard);
 	}
 
 	checkMatching(card) {
-		// if (card.name == 'Hieu Pham') {
-		//   let modal = this.modalCtrl.create(MatchedPage);
-		//   modal.present();
-		// }
+		this.animalProvider.matchAnimal(this.user.id, card.animal_id).then((data) => {
+			console.log(data);
+			console.log('You liked: ' + card.animal_name);
+		})
 	}
 
 	goToMe() {
