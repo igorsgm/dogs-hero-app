@@ -1,0 +1,72 @@
+<ion-header>
+	<ion-navbar color="primary">
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title text-uppercase>MESSAGES</ion-title>
+	</ion-navbar>
+	
+	<ion-toolbar color="white">
+		<ion-searchbar placeholder="Search"></ion-searchbar>
+	</ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+	<div>
+		<div class="messages-count" padding-horizontal>
+			<h5 ion-text color="secondary" class="font-bold">Messages</h5>
+			<span ion-text class="font-bold messages-unread">2</span>
+		</div>
+		<div padding-left class="chats-list">
+			<ion-row align-items-center (click)="goToChatPage(true)">
+				<ion-col col-auto>
+					<img class="rounded" class="thumb-md" src="assets/imgs/chat/user1.png">
+					<div class="unread-status"></div>
+				</ion-col>
+				<ion-col>
+					<div class="chat-text-wrapper">
+						<h3 ion-text color="gray" class="font-bold">Happy Tails Rescue</h3>
+						<p ion-text color="gray">Hello! Thank you for accep...</p>
+					</div>
+				</ion-col>
+			</ion-row>
+			<ion-row align-items-center (click)="goToChatPage()">
+				<ion-col col-auto>
+					<img class="rounded" class="thumb-md" src="assets/imgs/chat/user2.png">
+				</ion-col>
+				<ion-col>
+					<div class="chat-text-wrapper">
+						<h3 ion-text color="gray" class="font-bold">Animals Friends</h3>
+						<p ion-text color="gray">Hi! You gave a match to our...</p>
+					</div>
+				</ion-col>
+			</ion-row>
+			<ion-row align-items-center (click)="goToChatPage()">
+				<ion-col col-auto>
+					<img class="rounded" class="thumb-md" src="assets/imgs/chat/user3.png">
+				</ion-col>
+				<ion-col>
+					<div class="chat-text-wrapper">
+						<h3 ion-text color="gray" class="font-bold">Flora and Fauna Shelter</h3>
+						<p ion-text color="gray">Thank you!</p>
+					</div>
+				</ion-col>
+			</ion-row>
+			
+			<ion-row align-items-center (click)="goToChatPage()">
+				<ion-col col-auto>
+					<img class="rounded" class="thumb-md" src="assets/imgs/chat/user4.png">
+				</ion-col>
+				<ion-col>
+					<div class="chat-text-wrapper">
+						<h3 ion-text color="gray" class="font-bold">ProAnima</h3>
+						<p ion-text color="gray">That's awesome!</p>
+					</div>
+				</ion-col>
+			</ion-row>
+		</div>
+	</div>
+
+</ion-content>
+

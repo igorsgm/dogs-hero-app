@@ -175,4 +175,8 @@ export class AdoptionPage {
 		return item.animal_id;
 	}
 
+	public openMessagesPage() {
+		this.navCtrl.push('MessagesPage', {direction: 'forward'});
+	}
+
 }

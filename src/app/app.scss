@@ -14,6 +14,8 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+@import "helper.scss";
+
 ion-menu {
 	ion-content, button {
 		background-color: map_get($colors, primary) !important;
@@ -35,6 +37,14 @@ ion-grid {
 .inline-icon-number {
 	display: inline;
 	vertical-align: super;
+}
+
+.inline-icon-text {
+    display: inline;
+    vertical-align: super;
+    top: -4px;
+    position: relative;
+    padding-left: 4px;
 }
 
 /**

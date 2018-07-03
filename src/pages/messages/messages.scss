@@ -1,0 +1,56 @@
+page-messages {
+
+	ion-toolbar {
+		.toolbar-background {
+			border-style: none !important;
+		}
+	}
+
+	ion-content {
+		.messages-count {
+
+			h5 {
+				display: inline-block;
+			}
+
+			.messages-unread {
+				background-color: color($colors, secondary);
+				border-radius: 0.8em;
+				-moz-border-radius: 0.8em;
+				-webkit-border-radius: 0.8em;
+				color: color($colors, white);
+				display: inline-block;
+				font-weight: bold;
+				line-height: 1.6em;
+				margin: 5px;
+				text-align: center;
+				width: 1.6em;
+			}
+		}
+
+		.unread-status {
+			background-color: color($colors, chat-unread-status);
+			position: absolute;
+			right: -3px;
+			top: 26px;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			border: 3px solid white;
+		}
+
+		.chats-list {
+			h3 {
+				margin: 0 !important;
+			}
+
+			.chat-text-wrapper {
+				p {
+					margin: 0 0 0.5em 0;
+				}
+
+				border-bottom: 1px solid color($colors, light-gray);
+			}
+		}
+	}
+}

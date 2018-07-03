@@ -1,0 +1,22 @@
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+
+@IonicPage()
+@Component({
+	selector: 'page-messages',
+	templateUrl: 'messages.html',
+})
+export class MessagesPage {
+
+	constructor(public navCtrl: NavController, public navParams: NavParams) {
+	}
+
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad MessagesPage');
+	}
+
+	goToChatPage(isNewAnimalMatch = false) {
+		this.navCtrl.push('ChatPage', {isNewAnimalMatch: isNewAnimalMatch});
+	}
+
+}
