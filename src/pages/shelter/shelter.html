@@ -9,11 +9,18 @@
 
 
 <ion-content class="shelter-view">
-	<ion-card no-margin>
+	<ion-card no-margin *ngIf="shelter">
 		<ion-card-header text-center no-padding padding-vertical>
-			<h1 *ngIf="shelter" ion-text text-uppercase color="white" class="card-title font-semi-bold">{{shelter.name}}</h1>
+			<h1 ion-text text-uppercase color="white" class="card-title font-semi-bold">{{shelter.name}}</h1>
 			<h2 ion-text text-uppercase color="white" class="card-subtitle font-light">Members since 28/04/2018</h2>
-			<ion-img class="stars" src="assets/imgs/shelter/stars/4.png"></ion-img>
+			
+			<div class="shelter-rating">
+				<i ion-text class="fa fa-star" color="white" *ngIf="shelter.avg_rating >= 1"></i>
+				<i ion-text class="fa fa-star" color="white" *ngIf="shelter.avg_rating >= 2"></i>
+				<i ion-text class="fa fa-star" color="white" *ngIf="shelter.avg_rating >= 3"></i>
+				<i ion-text class="fa fa-star" color="white" *ngIf="shelter.avg_rating >= 4"></i>
+				<i ion-text class="fa fa-star" color="white" *ngIf="shelter.avg_rating >= 5"></i>
+			</div>
 			
 			<ion-grid>
 				<ion-row justify-content-center>
@@ -55,11 +62,16 @@
 					<h2 text-uppercase class="font-semi-bold" ion-text color="gray">COMMENTS</h2>
 					
 					<div *ngIf="reviews">
-						<ion-item *ngFor="let review of reviews">
+						<ion-item *ngFor="let review of reviews" class="review">
 							<ion-avatar item-start>
 								<img src="http://static.tumblr.com/ee8143344452820a1fc1583ca003fb08/hsdjdwy/KsLnspwyp/tumblr_static_3aonjogcoxs0gckkw04004wcw.jpg">
 							</ion-avatar>
 							<h3 class="font-semi-bold" ion-text color="gray">{{review.name}}</h3>
+							<i ion-text class="fa fa-star" color="secondary" *ngIf="review.review.points >= 1"></i>
+							<i ion-text class="fa fa-star" color="secondary" *ngIf="review.review.points >= 2"></i>
+							<i ion-text class="fa fa-star" color="secondary" *ngIf="review.review.points >= 3"></i>
+							<i ion-text class="fa fa-star" color="secondary" *ngIf="review.review.points >= 4"></i>
+							<i ion-text class="fa fa-star" color="secondary" *ngIf="review.review.points >= 5"></i>
 							<p>{{review.review.review}}</p>
 						</ion-item>
 					</div>
