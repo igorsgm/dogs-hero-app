@@ -37,19 +37,12 @@ export class ShelterReviewPage {
 
 			this.http.post(this.restProvider.getUrlApi() + '/shelter/setRating', body, this.restProvider.getHeadersUrlEncoded()).toPromise()
 				.then((data: any) => {
-					this.returnToShelterPageRefreshing();
+					this.dismiss();
 				}).catch((error) => {
 				console.log(error);
+				this.dismiss();
 			});
 		}
-	}
-
-	returnToShelterPageRefreshing() {
-		this.navCtrl.push('ShelterPage', {
-			shelter_id: this.navParams.data.shelter_id
-		}, {animate: false}).then(() => {
-			this.navCtrl.remove(this.viewCtrl.index);
-		});
 	}
 
 }

@@ -22,16 +22,8 @@ export class ShelterPage {
 
 		this.localStorage.get('user').then(user => {
 			this.user = user;
-			this.getShelterDetails(this.navParams.data.shelter_id);
-			this.getShelterReviews(this.navParams.data.shelter_id);
+			this.loadData();
 		});
-
-		this.shelter = this.navParams.data.shelter;
-
-	}
-
-	ionViewDidLoad() {
-		console.log('ionViewDidLoad ShelterPage');
 	}
 
 	showAboutTab() {
@@ -47,6 +39,13 @@ export class ShelterPage {
 		$('#about-tab').hide();
 		$('#adoption-tab').show();
 
+	}
+
+	loadData() {
+		this.shelter = null;
+		this.reviews = [];
+		this.getShelterDetails(this.navParams.data.shelter_id);
+		this.getShelterReviews(this.navParams.data.shelter_id);
 	}
 
 	getShelterDetails(idShelter) {
@@ -85,10 +84,15 @@ export class ShelterPage {
 	showReviewModal() {
 		let reviewPageParams = {
 			shelter_id: this.shelter.shelter_id,
-			user_id: this.user.id
+			user_id: this.user.id,
 		};
 
 		let modal = this.modalCtrl.create(ShelterReviewPage, reviewPageParams);
+
+		modal.onDidDismiss(data => {
+			this.loadData();
+		});
+
 		modal.present({animate: false});
 	}
 
