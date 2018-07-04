@@ -7,6 +7,7 @@ import {LoginPage} from "../pages/login/login";
 import {Storage} from "@ionic/storage";
 import {MapPage} from "../pages/map/map";
 import {DashboardPage} from "../pages/dashboard/dashboard";
+import {AvatarPage} from "../pages/avatar/avatar";
 
 @Component({
 	templateUrl: 'app.html',
@@ -25,6 +26,7 @@ export class MyApp {
 		this.pages = [
 			{title: 'Map', component: MapPage},
 			{title: 'Dashboard', component: DashboardPage},
+			{title: 'Avatar', component: AvatarPage},
 		];
 
 	}
