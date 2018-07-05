@@ -57,5 +57,7 @@ Then open the DevApp, connect to the same network, and the app will automaticall
 
 The DevApp comes with many native plugins built right in, so you don’t need to worry about installing plugins.
 
+[Ionic DevApp Documentation](https://ionicframework.com/docs/pro/devapp/)
+
 
 > When you're ready to deploy SaveBarkley App to a real device, check out Ionic's [Deploying guide](https://ionicframework.com/docs/intro/deploying/)
