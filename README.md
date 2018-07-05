@@ -29,7 +29,7 @@ Follow the [Android](https://cordova.apache.org/docs/en/7.x/guide/platforms/andr
 Make sure you are inside savebarkley folder in your terminal by runing
 
 ```
-cd savebarkley
+cd savebarkley-hero-app
 ```
 
 Install dependencies
