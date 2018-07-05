@@ -39,9 +39,23 @@ npm install
 ```
 
 
-Much of SaveBarkley's app can be built right in the browser with **ionic cordova run browser**. We recommend starting with this workflow.
+Much of SaveBarkley's app can be built right in the browser with **ionic serve**. We recommend starting with this workflow.
 ```
-ionic cordova run browser
+ionic serve
 ```
 
-When you're ready to deploy SaveBarkley App to a real device, check out Ionic's [Deploying guide](https://ionicframework.com/docs/intro/deploying/) 
+
+When you're ready to deploy SaveBarkley App to a real device, check out Ionic's [Deploying guide](https://ionicframework.com/docs/intro/deploying/)
+
+#### Ionic DevApp 
+
+The Ionic DevApp is a free app that makes it easy to run your Ionic app directly on your iOS or Android device.
+
+Skip dealing with frustrating Native SDK installation issues, just run
+```
+ionic serve -c
+```
+
+Then open the DevApp, connect to the same network, and the app will automatically load and run your app.
+
+The DevApp comes with many native plugins built right in, so you don’t need to worry about installing plugins.
