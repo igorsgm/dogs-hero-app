@@ -44,9 +44,6 @@ Much of SaveBarkley's app can be built right in the browser with **ionic serve**
 ionic serve
 ```
 
-
-When you're ready to deploy SaveBarkley App to a real device, check out Ionic's [Deploying guide](https://ionicframework.com/docs/intro/deploying/)
-
 #### Ionic DevApp 
 
 The Ionic DevApp is a free app that makes it easy to run your Ionic app directly on your iOS or Android device.
@@ -59,3 +56,6 @@ ionic serve -c
 Then open the DevApp, connect to the same network, and the app will automatically load and run your app.
 
 The DevApp comes with many native plugins built right in, so you don’t need to worry about installing plugins.
+
+
+> When you're ready to deploy SaveBarkley App to a real device, check out Ionic's [Deploying guide](https://ionicframework.com/docs/intro/deploying/)
