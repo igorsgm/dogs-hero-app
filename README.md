@@ -1,5 +1,5 @@
 
-# SaveBarkley Hero App
+# Dogs Hero App
 
 ### Version 1.0
 
@@ -25,11 +25,11 @@ Follow the [Android](https://cordova.apache.org/docs/en/7.x/guide/platforms/andr
 * _If you’re new to the command line, read [Ionic's Terminal tutorial](https://blog.ionicframework.com/new-to-the-command-line/)._
 
 
-#### Run SaveBarkley App
-Make sure you are inside savebarkley folder in your terminal by runing
+#### Run DogsHero App
+Make sure you are inside dogshero folder in your terminal by runing
 
 ```
-cd savebarkley-hero-app
+cd dogshero-hero-app
 ```
 
 Install dependencies
@@ -39,7 +39,7 @@ npm install
 ```
 
 
-Much of SaveBarkley's app can be built right in the browser with **ionic serve**. We recommend starting with this workflow.
+Much of DogsHero's app can be built right in the browser with **ionic serve**. We recommend starting with this workflow.
 ```
 ionic serve
 ```
@@ -60,4 +60,4 @@ The DevApp comes with many native plugins built right in, so you don’t need to
 [Ionic DevApp Documentation](https://ionicframework.com/docs/pro/devapp/)
 
 
-> When you're ready to deploy SaveBarkley App to a real device, check out Ionic's [Deploying guide](https://ionicframework.com/docs/intro/deploying/)
+> When you're ready to deploy DogsHero App to a real device, check out Ionic's [Deploying guide](https://ionicframework.com/docs/intro/deploying/)
